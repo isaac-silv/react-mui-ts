@@ -9,7 +9,7 @@ interface IThemeContextData {
   toggleTheme: () => void;
 }
 interface IAppThemeProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const ThemeContext = createContext({} as IThemeContextData);
