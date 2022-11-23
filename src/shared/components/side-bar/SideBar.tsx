@@ -1,3 +1,4 @@
+import { ImportContactsTwoTone } from '@mui/icons-material';
 import {
   Avatar,
   Divider,
@@ -9,26 +10,48 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme } from '@mui/material';
-import { Box, display } from '@mui/system';
-import React, { ButtonHTMLAttributes, ReactNode, SetStateAction, useState } from 'react';
+import { Box } from '@mui/system';
+import React, { ReactNode, useState } from 'react';
+import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useDrawerContext } from '../../contexts';
 
 interface IAppThemeProviderProps {
   children: ReactNode
 }
 
+interface IListItemLinkProps {
+  label: string;
+  icon: string;
+  to: string;
+  onClick: (() => void) | undefined;
+}
+
+const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to, onClick }) => {
+
+  const navigate = useNavigate();
+
+  const resolvedPath = useResolvedPath(to);
+  const match = useMatch({ path: resolvedPath.pathname, end: false });
+
+  const handleClick = () => {
+    navigate(to);
+    onClick?.();
+  };
+  return (
+    <ListItemButton selected={!!match} onClick={handleClick}>
+      <ListItemIcon>
+        <Icon>{icon}</Icon>
+      </ListItemIcon>
+      <ListItemText primary={label} />
+    </ListItemButton>
+  );
+};
+
 export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
-  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
-
-  const handleListItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: React.SetStateAction<number>) => {
-    setSelectedIndex(index);
-  };
+  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
   return (
     <>
@@ -62,17 +85,15 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
           <Box flex={1}>
 
             <List component='nav'>
-
-              <ListItemButton
-                selected={selectedIndex === 0}
-                onClick={(event) => handleListItemClick(event, 0)}
-              >
-                <ListItemIcon>
-                  <Icon>home</Icon>
-                </ListItemIcon>
-                <ListItemText primary='Página inicial' />
-              </ListItemButton>
-
+              {drawerOptions.map(drawerOption => (
+                <ListItemLink
+                  key={drawerOption.path}
+                  to={drawerOption.path}
+                  icon={drawerOption.icon}
+                  label={drawerOption.label}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
+                />
+              ))}
             </List>
 
           </Box>
