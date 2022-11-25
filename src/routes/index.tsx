@@ -9,9 +9,14 @@ export const AppRoutes = () => {
   useEffect(() => {
     setDrawerOptions([
       {
-        label: 'Página inicial',
-        path: '/home',
-        icon: 'home',
+        label: 'Dashboard',
+        path: '/dashboard',
+        icon: 'dashboard',
+      },
+      {
+        label: 'Agendamentos',
+        path: '/agendamentos',
+        icon: 'perm_contact_calendar',
       }
     ]);
   }, []);
@@ -19,10 +24,14 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route
-        path="/home"
+        path="/dashboard"
         element={<Dashboard />}
       />
-      <Route path="*" element={<Navigate to="/home" />} />
+      <Route
+        path="/agendamentos"
+        element={<Dashboard />}
+      />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
 };

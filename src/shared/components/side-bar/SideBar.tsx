@@ -26,6 +26,8 @@ interface IListItemLinkProps {
 
 const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to }) => {
 
+  const theme = useTheme();
+
   const navigate = useNavigate();
 
   const resolvedPath = useResolvedPath(to);
@@ -35,11 +37,15 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to }) => {
     navigate(to);
   };
   return (
-    <ListItemButton selected={!!match} onClick={handleClick}>
+    <ListItemButton
+      selected={!!match}
+      onClick={handleClick} sx={{
+        borderRadius: theme.spacing(1),
+      }}>
       <ListItemIcon>
         <Icon>{icon}</Icon>
       </ListItemIcon>
-      <ListItemText primary={label} />
+      <ListItemText primary={label}/>
     </ListItemButton>
   );
 };
@@ -63,6 +69,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
           height='100%'
           display='flex'
           flexDirection='column'
+          padding={theme.spacing(2)}
         >
 
           <Box
@@ -81,7 +88,17 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
           <Divider />
 
           <Box flex={1}>
-            <List component='nav'>
+            <List
+              component='nav'
+              sx={{
+                '&& .Mui-selected, && .Mui-selected:hover': {
+                  '&, & .MuiListItemIcon-root': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+              }}
+              onClick={mdDown ? toggleDrawerOpen : undefined}
+            >
               {drawerOptions.map(drawerOption => (
                 <ListItemLink
                   key={drawerOption.path}
@@ -107,7 +124,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height='100vh' marginLeft={mdDown ? 0 : isDrawerOpen ? theme.spacing(28) : 0}>
+      <Box height='100vh' marginLeft={mdDown ? 0 : isDrawerOpen ? theme.spacing(32) : 0}>
         {children}
       </Box>
     </>
