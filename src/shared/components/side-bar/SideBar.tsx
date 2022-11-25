@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
   useMediaQuery,
   useTheme } from '@mui/material';
 import { Box } from '@mui/system';
@@ -74,15 +75,14 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
 
           <Box
             width='100%'
-            height={theme.spacing(20)}
+            height={theme.spacing(6)}
             display='flex'
             alignItems='center'
             justifyContent='center'
           >
-            <Avatar sx={{
-              height: theme.spacing(6),
-              width: theme.spacing(6)}}
-            />
+            <Typography variant='h4'>
+              <strong>Logo</strong>
+            </Typography>
           </Box>
 
           <Divider />
@@ -90,13 +90,6 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
           <Box flex={1}>
             <List
               component='nav'
-              sx={{
-                '&& .Mui-selected, && .Mui-selected:hover': {
-                  '&, & .MuiListItemIcon-root': {
-                    color: theme.palette.primary.main,
-                  },
-                },
-              }}
               onClick={mdDown ? toggleDrawerOpen : undefined}
             >
               {drawerOptions.map(drawerOption => (

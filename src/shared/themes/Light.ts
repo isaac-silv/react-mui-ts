@@ -1,12 +1,12 @@
 import { createTheme } from '@mui/material';
-import { cyan, purple } from '@mui/material/colors';
+import { cyan, deepPurple, purple } from '@mui/material/colors';
 
 export const LightTheme = createTheme({
   palette: {
     primary: {
-      main: purple[500],
-      dark: purple[800],
-      light: purple[500],
+      main: deepPurple[500],
+      dark: deepPurple[800],
+      light: deepPurple[500],
       contrastText: '#ffffff',
     },
     secondary: {
@@ -18,6 +18,48 @@ export const LightTheme = createTheme({
     background: {
       default: '#f7f6f3',
       paper: '#ffffff',
+    }
+  },
+  components: {
+    MuiList: {
+      styleOverrides: {
+        root: {
+          '&& .Mui-selected': {
+            backgroundColor: deepPurple[50],
+            '&, & .MuiListItemIcon-root': {
+              color: deepPurple[500],
+            },
+          },
+        }
+      }
     },
-  }
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          marginBottom: '6px',
+          '&:hover': {
+            backgroundColor: deepPurple[50],
+            color: deepPurple[400],
+            '& .MuiListItemIcon-root': {
+              color: deepPurple[400],
+            },
+          }
+        }
+      }
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: deepPurple[50],
+          color: deepPurple[500],
+          padding: '5px',
+          borderRadius: '5px',
+          '&:hover': {
+            backgroundColor: deepPurple[400],
+            color: '#ffffff',
+          }
+        }
+      }
+    }
+  },
 });

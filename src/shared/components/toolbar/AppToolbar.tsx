@@ -64,10 +64,18 @@ export const AppToolbar: React.FC = () => {
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <IconButton
+            onClick={handleOpenUserMenu}
+            sx={{
+              p: 0,
+              backgroundColor: 'transparent',
+              '&:hover': {
+                backgroundColor: 'transparent'
+              }
+            }}>
             <Avatar sx={{
-              height: theme.spacing(4),
-              width: theme.spacing(4)}} />
+              height: theme.spacing(5),
+              width: theme.spacing(5)}} />
           </IconButton>
           <Menu
             sx={{ mt: '45px' }}
