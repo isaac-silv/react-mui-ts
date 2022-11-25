@@ -1,3 +1,4 @@
+import { truncate } from 'fs/promises';
 import { createContext, useCallback, useState, ReactNode, useContext } from 'react';
 
 
@@ -9,6 +10,7 @@ interface IDrawerOption {
 
 interface IDrawerContextData {
   isDrawerOpen: boolean;
+  setIsDrawerOpen: (value: boolean) => void;
   drawerOptions: IDrawerOption[];
   toggleDrawerOpen: () => void;
   setDrawerOptions: (newDrawerOptions: IDrawerOption[]) => void;
@@ -25,7 +27,7 @@ export const useDrawerContext = () => {
 };
 
 export const DrawerProvider: React.FC<IDrawerProviderProps> = ({ children }) => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [drawerOptions, setDrawerOptions] = useState<IDrawerOption[]>([]);
 
   const toggleDrawerOpen = useCallback(() => {
@@ -38,7 +40,7 @@ export const DrawerProvider: React.FC<IDrawerProviderProps> = ({ children }) => 
 
 
   return (
-    <DrawerContext.Provider value={{ isDrawerOpen, drawerOptions, toggleDrawerOpen, setDrawerOptions: handleSetDrawerOptions }}>
+    <DrawerContext.Provider value={{ isDrawerOpen, setIsDrawerOpen, drawerOptions, toggleDrawerOpen, setDrawerOptions: handleSetDrawerOptions }}>
       {children}
     </DrawerContext.Provider>
   );

@@ -1,4 +1,3 @@
-import { ImportContactsTwoTone } from '@mui/icons-material';
 import {
   Avatar,
   Divider,
@@ -23,10 +22,9 @@ interface IListItemLinkProps {
   label: string;
   icon: string;
   to: string;
-  onClick: (() => void) | undefined;
 }
 
-const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to, onClick }) => {
+const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to }) => {
 
   const navigate = useNavigate();
 
@@ -35,7 +33,6 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to, onClick }
 
   const handleClick = () => {
     navigate(to);
-    onClick?.();
   };
   return (
     <ListItemButton selected={!!match} onClick={handleClick}>
@@ -50,15 +47,15 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to, onClick }
 export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
 
   const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const { isDrawerOpen, setIsDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const { toggleTheme } = useAppThemeContext();
 
   return (
     <>
       <Drawer
-        open={isDrawerOpen}
-        variant={smDown ? 'temporary' : 'permanent'}
+        open={mdDown ? !isDrawerOpen : isDrawerOpen}
+        variant={mdDown ? 'temporary' : 'persistent'}
         onClose={toggleDrawerOpen}
       >
         <Box
@@ -76,8 +73,8 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
             justifyContent='center'
           >
             <Avatar sx={{
-              height: theme.spacing(12),
-              width: theme.spacing(12)}}
+              height: theme.spacing(6),
+              width: theme.spacing(6)}}
             />
           </Box>
 
@@ -91,7 +88,6 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
                   to={drawerOption.path}
                   icon={drawerOption.icon}
                   label={drawerOption.label}
-                  onClick={smDown ? toggleDrawerOpen : undefined}
                 />
               ))}
             </List>
@@ -111,7 +107,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height='100vh' marginLeft={smDown ? 0 : theme.spacing(28)}>
+      <Box height='100vh' marginLeft={mdDown ? 0 : isDrawerOpen ? theme.spacing(28) : 0}>
         {children}
       </Box>
     </>

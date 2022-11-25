@@ -1,3 +1,4 @@
+import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
 
@@ -5,8 +6,9 @@ export const Dashboard = () => {
 
   return (
     <LayoutBase
-      titulo='Pagina inicial'
-      barraDeFerramentas={<>Barra de ferramentas</>}
+      AppToolbar={(
+        <AppToolbar />
+      )}
     >
 
     </LayoutBase>
