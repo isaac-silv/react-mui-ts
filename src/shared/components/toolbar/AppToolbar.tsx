@@ -10,17 +10,30 @@ import {
   Tooltip,
   MenuItem,
   Icon,
+  TextField,
+  Button,
+  Paper,
+  InputBase,
 } from '@mui/material';
 
 
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppThemeContext, useDrawerContext } from '../../contexts';
 import { useTheme } from '@mui/material';
+import { borderRadius } from '@mui/system';
 
 const settings = ['Perfil', 'Sair'];
 
+interface IToolBarProps {
+  textSearch?: string;
+  lookInputSeach?: boolean;
+  changeTextSearch?: (newText: string) => void;
+}
 
-export const AppToolbar: React.FC = () => {
+
+export const AppToolbar: React.FC<IToolBarProps> = ({
+  textSearch, lookInputSeach = false, changeTextSearch,
+}) => {
 
   const { toggleDrawerOpen } = useDrawerContext();
   const { toggleTheme, themeName } = useAppThemeContext();
@@ -43,7 +56,7 @@ export const AppToolbar: React.FC = () => {
     <Box>
       <Toolbar disableGutters sx={{paddingX: theme.spacing(3)}}>
 
-        <Box sx={{ flexGrow: 1, mr: 1 }}>
+        <Box sx={{ mr: 1 }}>
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -55,7 +68,44 @@ export const AppToolbar: React.FC = () => {
           </IconButton>
         </Box>
 
-        <Box sx={{ mr: 1 }}>
+        <Box sx={{ flexGrow: 1, ml: theme.spacing(2) }}>
+          <Paper
+            elevation={0}
+            component='form'
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: 300,
+              height: 40,
+              paddingX: 0
+            }}
+          >
+            <InputBase
+              value={textSearch}
+              onChange={(e) => changeTextSearch?.(e.target.value)}
+              sx={{
+                ml: 1,
+                flex: 1
+              }}
+              placeholder='Buscar...'
+            />
+            <IconButton
+              type='button'
+              sx={{
+                display: 'flex',
+                justifyContent: 'end',
+                p: '10px',
+                borderTopLeftRadius: '0',
+                borderBottomLeftRadius: '0'
+              }}
+            >
+              <Icon>person_search</Icon>
+            </IconButton>
+          </Paper>
+        </Box>
+
+        <Box sx={{ mr: theme.spacing(1) }}>
           <IconButton onClick={toggleTheme}>
             <Icon>
               {themeName === 'light' ? 'dark_mode' : 'light_mode'}
