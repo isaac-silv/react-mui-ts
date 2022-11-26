@@ -18,7 +18,7 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({ children, AppToolbar })
       <Box>
         {AppToolbar}
       </Box>
-      <Box flex={1} overflow='auto'>
+      <Box flex={1} overflow='auto' paddingX={theme.spacing(3)}>
         {children}
       </Box>
     </Box>

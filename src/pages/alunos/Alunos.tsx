@@ -2,7 +2,7 @@ import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
 
-export const Dashboard = () => {
+export const Alunos = () => {
 
   return (
     <LayoutBase
@@ -10,7 +10,7 @@ export const Dashboard = () => {
         <AppToolbar />
       )}
     >
-      Teste
+      Alunos
     </LayoutBase>
   );
 };
