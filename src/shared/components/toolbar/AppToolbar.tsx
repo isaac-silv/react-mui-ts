@@ -14,6 +14,7 @@ import {
   Button,
   Paper,
   InputBase,
+  useMediaQuery,
 } from '@mui/material';
 
 
@@ -39,6 +40,8 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
   const { toggleTheme, themeName } = useAppThemeContext();
 
   const theme = useTheme();
+
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -68,7 +71,7 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
           </IconButton>
         </Box>
 
-        <Box sx={{ flexGrow: 1, ml: theme.spacing(2) }}>
+        <Box sx={{ flexGrow: 1, ml: theme.spacing(1) }}>
           <Paper
             elevation={0}
             component='form'
@@ -76,7 +79,7 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
               p: '2px 4px',
               display: 'flex',
               alignItems: 'center',
-              width: 300,
+              width: smDown ? 200 : 300,
               height: 40,
               paddingX: 0
             }}

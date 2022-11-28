@@ -10,7 +10,7 @@ export const LightTheme = createTheme({
       contrastText: '#ffffff',
     },
     secondary: {
-      main: cyan[500],
+      main: '#9155FD',
       dark: cyan[400],
       light: cyan[300],
       contrastText: '#ffffff',
@@ -25,9 +25,9 @@ export const LightTheme = createTheme({
       styleOverrides: {
         root: {
           '&& .Mui-selected': {
-            backgroundColor: deepPurple[50],
+            backgroundColor: deepPurple[500],
             '&, & .MuiListItemIcon-root': {
-              color: deepPurple[500],
+              color: '#ffffff',
             },
           },
         }
