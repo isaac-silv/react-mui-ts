@@ -26,8 +26,8 @@ export const Dashboard = () => {
             >
               <Grid item xs={4}>
                 <Grid item sx={{
-                  displey: 'flex',
-                  alignItems: 'cente',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
@@ -62,8 +62,8 @@ export const Dashboard = () => {
             >
               <Grid item xs={4}>
                 <Grid item sx={{
-                  displey: 'flex',
-                  alignItems: 'cente',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
@@ -98,8 +98,8 @@ export const Dashboard = () => {
             >
               <Grid item xs={4}>
                 <Grid item sx={{
-                  displey: 'flex',
-                  alignItems: 'cente',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
@@ -118,7 +118,7 @@ export const Dashboard = () => {
                     16
                   </Typography>
                   <Typography sx={{ fontSize: '0.9rem', fontWeight: 400 }}>
-                    COLABORDADORES
+                    COLABORADORES
                   </Typography>
                 </Grid>
               </Grid>
@@ -134,8 +134,8 @@ export const Dashboard = () => {
             >
               <Grid item xs={4}>
                 <Grid item sx={{
-                  displey: 'flex',
-                  alignItems: 'cente',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
@@ -168,35 +168,51 @@ export const Dashboard = () => {
               component={Paper}
               sx={{
                 borderRadius: theme.spacing(1),
-                height: theme.spacing(56)
+                height: theme.spacing(58)
               }}
               container
             >
               teste
             </Grid>
           </Grid>
-          <Grid item xs={6} container>
-            <Grid
-              xs={6}
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1),
-                height: theme.spacing(56)
-              }}
-              container
-            >
-              teste
+          <Grid item container spacing={2} xs={6}>
+            <Grid item container spacing={2} xs={12}>
+              <Grid item xs={6}>
+                <Grid
+                  component={Paper}
+                  sx={{
+                    borderRadius: theme.spacing(1),
+                    height: theme.spacing(40)
+                  }}
+                  container
+                >
+                  Teste
+                </Grid>
+              </Grid>
+              <Grid item xs={6}>
+                <Grid
+                  component={Paper}
+                  sx={{
+                    borderRadius: theme.spacing(1),
+                    height: theme.spacing(40)
+                  }}
+                  container
+                >
+                  Teste
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid
-              xs={6}
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1),
-                height: theme.spacing(56)
-              }}
-              container
-            >
-              teste
+            <Grid item container xs={12}>
+              <Grid
+                component={Paper}
+                sx={{
+                  borderRadius: theme.spacing(1),
+                  height: theme.spacing(16)
+                }}
+                container
+              >
+                Teste
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
