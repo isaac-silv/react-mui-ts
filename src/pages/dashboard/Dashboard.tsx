@@ -1,12 +1,15 @@
-import { Box, Grid, Icon, IconButton, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { bgcolor } from '@mui/system';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
+
+import Donutchart from './charts/Doughnut';
 
 
 export const Dashboard = () => {
 
   const theme = useTheme();
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <LayoutBase
@@ -42,10 +45,18 @@ export const Dashboard = () => {
               </Grid>
               <Grid item xs={8} container>
                 <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
-                  <Typography sx={{ fontSize: '1.5rem', fontWeight: 700 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontWeight: 700
+                    }}>
                     468
                   </Typography>
-                  <Typography sx={{ fontSize: '0.9rem', fontWeight: 400 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '0.7rem' : '0.9rem',
+                      fontWeight: 400
+                    }}>
                     ALUNOS
                   </Typography>
                 </Grid>
@@ -78,10 +89,20 @@ export const Dashboard = () => {
               </Grid>
               <Grid item xs={8} container>
                 <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
-                  <Typography sx={{ fontSize: '1.5rem', fontWeight: 700 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontWeight: 700
+                    }}
+                  >
                     26
                   </Typography>
-                  <Typography sx={{ fontSize: '0.9rem', fontWeight: 400 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '0.7rem' : '0.9rem',
+                      fontWeight: 400
+                    }}
+                  >
                     PROFESSORES
                   </Typography>
                 </Grid>
@@ -113,11 +134,22 @@ export const Dashboard = () => {
                 </Grid>
               </Grid>
               <Grid item xs={8} container>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
-                  <Typography sx={{ fontSize: '1.5rem', fontWeight: 700 }}>
+                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)} zeroMinWidth wrap='nowrap'>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontWeight: 700
+                    }}
+                  >
                     16
                   </Typography>
-                  <Typography sx={{ fontSize: '0.9rem', fontWeight: 400 }}>
+                  <Typography
+                    noWrap
+                    sx={{
+                      fontSize: lgDown ? '0.7rem' : '0.9rem',
+                      fontWeight: 400
+                    }}
+                  >
                     COLABORADORES
                   </Typography>
                 </Grid>
@@ -150,10 +182,20 @@ export const Dashboard = () => {
               </Grid>
               <Grid item xs={8} container>
                 <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
-                  <Typography sx={{ fontSize: '1.5rem', fontWeight: 700 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontWeight: 700
+                    }}
+                  >
                     18
                   </Typography>
-                  <Typography sx={{ fontSize: '0.9rem', fontWeight: 400 }}>
+                  <Typography
+                    sx={{
+                      fontSize: lgDown ? '0.7rem' : '0.9rem',
+                      fontWeight: 400
+                    }}
+                  >
                     TURMAS
                   </Typography>
                 </Grid>
@@ -172,7 +214,7 @@ export const Dashboard = () => {
               }}
               container
             >
-              teste
+              <Donutchart />
             </Grid>
           </Grid>
           <Grid item container spacing={2} xs={6}>

@@ -24,7 +24,7 @@ export const LightTheme = createTheme({
     MuiList: {
       styleOverrides: {
         root: {
-          '&& .Mui-selected': {
+          '&& .Mui-selected, && .Mui-selected:hover': {
             backgroundColor: deepPurple[500],
             '&, & .MuiListItemIcon-root': {
               color: '#ffffff',
