@@ -3,7 +3,7 @@ import { bgcolor } from '@mui/system';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
-import Donutchart from './charts/Doughnut';
+import { Donutchart } from './charts/Doughnut';
 
 
 export const Dashboard = () => {
@@ -213,8 +213,25 @@ export const Dashboard = () => {
                 height: theme.spacing(58)
               }}
               container
+              direction='column'
             >
-              <Donutchart />
+              <Grid sx={{ padding: theme.spacing(3) }}>
+                <Typography
+                  sx={{
+                    fontSize: lgDown ? '1.3rem' : '1.5rem',
+                    fontWeight: 400
+                  }}
+                >
+                  Despesas
+                </Typography>
+              </Grid>
+              <Grid>
+                <Donutchart />
+              </Grid>
+              <Grid>
+                Column
+              </Grid>
+
             </Grid>
           </Grid>
           <Grid item container spacing={2} xs={6}>
