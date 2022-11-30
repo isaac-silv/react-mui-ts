@@ -3,7 +3,7 @@ import { controllers } from 'chart.js';
 import { W } from 'chart.js/dist/chunks/helpers.core';
 import Chart from 'react-apexcharts';
 
-export const Donutchart = () =>
+export const ReceitaChart = () =>
 {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -12,7 +12,7 @@ export const Donutchart = () =>
     <Grid>
       <Chart
         width={smDown ? '330px' : '400px'}
-        type="donut"
+        type='bar'
         series={[45500.75, 7000, 4000, 3615.33, 2000]}
 
         options={{

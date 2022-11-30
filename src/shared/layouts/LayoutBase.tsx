@@ -14,12 +14,14 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({ children, AppToolbar })
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (
-    <Container maxWidth='xl'>
+    <Container maxWidth='xl' sx={{
+      height:'100%'
+    }}>
       <Box height='100%' display='flex' flexDirection='column' gap={1}>
         <Box>
           {AppToolbar}
         </Box>
-        <Box flex={1} overflow='auto' paddingX={theme.spacing(3)} mt={theme.spacing(4)}>
+        <Box flex={1} overflow='auto' paddingX={theme.spacing(3)} pt={theme.spacing(4)} pb={theme.spacing(4)}>
           {children}
         </Box>
       </Box>

@@ -54,15 +54,15 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ label, icon, to }) => {
 export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
 
   const theme = useTheme();
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
   const { isDrawerOpen, setIsDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const { toggleTheme } = useAppThemeContext();
 
   return (
     <>
       <Drawer
-        open={mdDown ? !isDrawerOpen : isDrawerOpen}
-        variant={mdDown ? 'temporary' : 'persistent'}
+        open={lgDown ? !isDrawerOpen : isDrawerOpen}
+        variant={lgDown ? 'temporary' : 'persistent'}
         onClose={toggleDrawerOpen}
       >
         <Box
@@ -90,7 +90,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
           <Box flex={1}>
             <List
               component='nav'
-              onClick={mdDown ? toggleDrawerOpen : undefined}
+              onClick={lgDown ? toggleDrawerOpen : undefined}
             >
               {drawerOptions.map(drawerOption => (
                 <ListItemLink
@@ -117,7 +117,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height='100vh' marginLeft={mdDown ? 0 : isDrawerOpen ? theme.spacing(32) : 0}>
+      <Box height='100vh' marginLeft={lgDown ? 0 : isDrawerOpen ? theme.spacing(32) : 0}>
         {children}
       </Box>
     </>

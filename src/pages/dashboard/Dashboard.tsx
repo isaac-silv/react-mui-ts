@@ -1,15 +1,18 @@
-import { Box, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Box, Divider, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { bgcolor } from '@mui/system';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
 import { Donutchart } from './charts/Doughnut';
+import { ReceitaChart } from './charts/Receita';
 
 
 export const Dashboard = () => {
 
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <LayoutBase
@@ -19,7 +22,7 @@ export const Dashboard = () => {
     >
       <Grid container spacing={2}>
         <Grid item container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
             <Grid
               component={Paper}
               sx={{
@@ -63,7 +66,7 @@ export const Dashboard = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
             <Grid
               component={Paper}
               sx={{
@@ -109,7 +112,7 @@ export const Dashboard = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
             <Grid
               component={Paper}
               sx={{
@@ -156,7 +159,7 @@ export const Dashboard = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
             <Grid
               component={Paper}
               sx={{
@@ -205,72 +208,93 @@ export const Dashboard = () => {
         </Grid>
 
         <Grid item container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={mdDown ? 12 : 6}>
             <Grid
               component={Paper}
               sx={{
                 borderRadius: theme.spacing(1),
-                height: theme.spacing(58)
               }}
               container
               direction='column'
             >
-              <Grid sx={{ padding: theme.spacing(3) }}>
+              <Grid sx={{ display: 'flex', padding: theme.spacing(2) }}>
                 <Typography
                   sx={{
-                    fontSize: lgDown ? '1.3rem' : '1.5rem',
+                    flexGrow: 1,
+                    fontSize: lgDown ? '1.2rem' : '1.3rem',
+                    fontWeight: 400
+                  }}
+                >
+                  Receita
+                </Typography>
+
+                <Avatar
+                  sx={{
+                    flexGrow: 0,
+                    bgcolor: '#EDE7F6',
+                    color: theme.palette.primary.main
+                  }}
+                  variant='rounded'
+                >
+                  <Icon>
+                    trending_up
+                  </Icon>
+                </Avatar>
+
+              </Grid>
+              <Divider />
+              <Grid item container sx={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
+                padding: theme.spacing(2)
+              }}>
+                <ReceitaChart />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={mdDown ? 12 : 6}>
+            <Grid
+              component={Paper}
+              sx={{
+                borderRadius: theme.spacing(1),
+              }}
+              container
+              direction='column'
+            >
+              <Grid sx={{ display: 'flex', padding: theme.spacing(2) }}>
+                <Typography
+                  sx={{
+                    flexGrow: 1,
+                    fontSize: lgDown ? '1.2rem' : '1.3rem',
                     fontWeight: 400
                   }}
                 >
                   Despesas
                 </Typography>
-              </Grid>
-              <Grid>
-                <Donutchart />
-              </Grid>
-              <Grid>
-                Column
-              </Grid>
 
-            </Grid>
-          </Grid>
-          <Grid item container spacing={2} xs={6}>
-            <Grid item container spacing={2} xs={12}>
-              <Grid item xs={6}>
-                <Grid
-                  component={Paper}
+                <Avatar
                   sx={{
-                    borderRadius: theme.spacing(1),
-                    height: theme.spacing(40)
+                    flexGrow: 0,
+                    bgcolor: '#EDE7F6',
+                    color: theme.palette.primary.main
                   }}
-                  container
+                  variant='rounded'
                 >
-                  Teste
-                </Grid>
+                  <Icon>
+                    trending_down
+                  </Icon>
+                </Avatar>
+
               </Grid>
-              <Grid item xs={6}>
-                <Grid
-                  component={Paper}
-                  sx={{
-                    borderRadius: theme.spacing(1),
-                    height: theme.spacing(40)
-                  }}
-                  container
-                >
-                  Teste
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item container xs={12}>
-              <Grid
-                component={Paper}
-                sx={{
-                  borderRadius: theme.spacing(1),
-                  height: theme.spacing(16)
-                }}
-                container
-              >
-                Teste
+              <Divider />
+              <Grid item container sx={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
+                padding: theme.spacing(2)
+              }}>
+                <Donutchart />
               </Grid>
             </Grid>
           </Grid>
