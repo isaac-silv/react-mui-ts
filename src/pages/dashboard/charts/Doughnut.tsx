@@ -8,10 +8,11 @@ export const Donutchart = () =>
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
+
   return(
     <Grid>
       <Chart
-        width={smDown ? '330px' : '400px'}
+        width={smDown ? '330px' : '416px'}
         type="donut"
         series={[45500.75, 7000, 4000, 3615.33, 2000]}
 

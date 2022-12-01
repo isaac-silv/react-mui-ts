@@ -7,16 +7,22 @@ export const ReceitaChart = () =>
 {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return(
     <Grid>
       <Chart
-        width={smDown ? '330px' : '400px'}
+        width={smDown ? '300px' : mdDown ? '470px' : '400px'}
         type='bar'
-        series={[45500.75, 7000, 4000, 3615.33, 2000]}
+        series={[
+          {
+            name: '2021',
+            data: [82000, 85000, 83000, 92000, 90000, 100000, 85000, 93000, 78000, 80000, 85000, 82000]
+          }
+        ]}
 
         options={{
-          labels: ['Salários', 'Reformas', 'Recursos', 'Alimentação', 'Outros'],
+          labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
           colors:['#673ab7', '#7e57c2', '#9575cd', '#b39ddb', '#d1c4e9'],
 
           plotOptions:{
