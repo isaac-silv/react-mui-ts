@@ -1,5 +1,4 @@
 import { Avatar, Box, Divider, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { bgcolor } from '@mui/system';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
