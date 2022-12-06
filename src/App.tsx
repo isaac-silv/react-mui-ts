@@ -1,21 +1,25 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
-import { SideBar } from './shared/components';
-import { AppThemeProvider, DrawerProvider } from './shared/contexts';
+import { LoginPage, SideBar } from './shared/components';
+import { AppThemeProvider, AuthProvider, DrawerProvider } from './shared/contexts';
 
 
 export const App = () => {
   return (
-    <AppThemeProvider>
-      <DrawerProvider>
-        <BrowserRouter>
+    <AuthProvider>
+      <AppThemeProvider>
+        <LoginPage>
+          <DrawerProvider>
+            <BrowserRouter>
 
-          <SideBar>
-            <AppRoutes />
-          </SideBar>
+              <SideBar>
+                <AppRoutes />
+              </SideBar>
 
-        </BrowserRouter>
-      </DrawerProvider>
-    </AppThemeProvider>
+            </BrowserRouter>
+          </DrawerProvider>
+        </LoginPage>
+      </AppThemeProvider>
+    </AuthProvider>
   );
 };
