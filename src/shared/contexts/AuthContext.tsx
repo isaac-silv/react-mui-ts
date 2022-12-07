@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
     const acessToken = localStorage.getItem('KEY');
 
     if(acessToken) {
-      setAcessToken(JSON.parse(acessToken));
+      setAcessToken(acessToken);
     } else {
       setAcessToken(undefined);
     }
@@ -34,6 +34,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
     const data = await AuthService.auth(email, password);
 
     if(data instanceof Error){
+      console.log(data.message);
       return data.message;
     } else {
       localStorage.setItem('KEY', JSON.stringify(data.token));

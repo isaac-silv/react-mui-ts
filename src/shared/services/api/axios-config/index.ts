@@ -2,9 +2,9 @@ import axios from 'axios';
 import { errorInterceptor, responseInterceptor } from './interceptors';
 
 const Api = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
-    Autorization: `Bearer ${JSON.parse(localStorage.getItem('KEY') || '')}`
+    Authorization: `Bearer ${localStorage.getItem('KEY')}`
   }
 });
 

@@ -7,18 +7,21 @@ interface IAuth {
 const auth = async (email: string, password: string): Promise<IAuth | Error> => {
   try {
 
-    const { data } = await Api.post('/token/', {email, password});
+    const { data } = await Api.post('/tokens/', {email, password});
 
     if(data) {
-      return data
+      return data;
     }
 
     return new Error('Error no login');
 
-  } catch (error) {
+  } catch (error: any) {
+
+    const {errors} = error.response.data;
     console.log(error);
 
-    return new Error((error as {message:  string}).message || 'Error no login')
+
+    return new Error((error as {message:  string}).message || 'Error no login');
   }
 };
 
