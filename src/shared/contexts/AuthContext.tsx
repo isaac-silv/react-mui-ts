@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthService } from '../services/api/auth/AuthService';
+import { useSnackBar } from './SnackBarContext';
 
 interface IAuthContextData {
   isAuthenticated: boolean,
@@ -15,6 +16,8 @@ const AuthContext = createContext({} as IAuthContextData);
 
 
 export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
+
+  const { showSnackBar } = useSnackBar();
 
   const [acessToken, setAcessToken] = useState<string>();
 
@@ -39,6 +42,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
     } else {
       localStorage.setItem('KEY', JSON.stringify(data.token));
       setAcessToken(data.token);
+      showSnackBar('Bem vindo', 'success');
     }
   }, []);
 

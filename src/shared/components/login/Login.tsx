@@ -1,11 +1,11 @@
 import { Box, Button, Card, CardActions, CardContent, Icon, IconButton, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useAuthContext } from '../../contexts';
+import { useAuthContext, useSnackBar } from '../../contexts';
 import * as yup from 'yup';
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email().required(),
   password: yup.string().required().min(6),
+  email: yup.string().email().required(),
 });
 
 interface ILoginPageProps {
@@ -14,11 +14,12 @@ interface ILoginPageProps {
 
 export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
   const { isAuthenticated, login } = useAuthContext();
+  const { showSnackBar } = useSnackBar();
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ emailError, setEmailError ] = useState('');
-  const [ passwordError, setPasswordError ] = useState('');
+  const [ emailError, setEmailError ] = useState(false);
+  const [ passwordError, setPasswordError ] = useState(false);
 
   const [ isLoading, setIsLoading ] = useState(false);
 
@@ -37,10 +38,13 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
         setIsLoading(false);
 
         errors.inner.forEach(error => {
+          if (error.path === 'password') {
+            setPasswordError(true);
+            showSnackBar(error.message, 'error');
+          }
           if(error.path === 'email') {
-            setEmailError(error.message);
-          } else if (error.path === 'password') {
-            setPasswordError(error.message);
+            setEmailError(true);
+            showSnackBar(error.message, 'info');
           }
         });
       });
@@ -82,9 +86,8 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
               type='email'
               value={email}
               disabled={isLoading}
-              error={!!emailError}
-              helperText={emailError}
-              onKeyDown={() => setEmailError('')}
+              error={emailError}
+              onKeyDown={() => setEmailError(false)}
               onChange={e => setEmail(e.target.value)}
             />
 
@@ -94,9 +97,8 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
               type='password'
               value={password}
               disabled={isLoading}
-              error={!!passwordError}
-              helperText={passwordError}
-              onKeyDown={() => setPasswordError('')}
+              error={passwordError}
+              onKeyDown={() => setPasswordError(false)}
               onChange={e => setPassword(e.target.value)}
             />
           </Box>
