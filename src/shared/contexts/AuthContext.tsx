@@ -1,3 +1,4 @@
+import { Backdrop, CircularProgress } from '@mui/material';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthService } from '../services/api/auth/AuthService';
 import { useSnackBar } from './SnackBarContext';
@@ -8,41 +9,55 @@ interface IAuthContextData {
   logout: () => void
 }
 
-interface IAuthProviderProps {
-  children: React.ReactNode
-}
 
 const AuthContext = createContext({} as IAuthContextData);
 
 
-export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
+export const AuthProvider = ({children}: {children: JSX.Element}) => {
 
   const { showSnackBar } = useSnackBar();
 
   const [acessToken, setAcessToken] = useState<string>();
+  const [ backdrop, setBackdrop ] = useState(false);
 
   const isAuthenticated = useMemo(() => !!acessToken, [acessToken]);
 
   useEffect(() => {
-    const acessToken = localStorage.getItem('KEY');
+    setBackdrop(true);
+    const valideteToken = async () => {
+      const acessToken = localStorage.getItem('KEY');
 
-    if(acessToken) {
-      setAcessToken(acessToken);
-    } else {
-      setAcessToken(undefined);
-    }
+      if(acessToken) {
+        const response = await AuthService.verifyToken();
+
+        if(response.message) {
+          setAcessToken(undefined);
+          setBackdrop(false);
+          localStorage.removeItem('KEY');
+          showSnackBar('Sessão expirada, realize login novamente.', 'info');
+        } else {
+          setBackdrop(false);
+          setAcessToken(acessToken);
+        }
+
+      } else {
+        setBackdrop(false);
+        setAcessToken(undefined);
+      }
+    };
+    valideteToken();
   }, []);
 
   const handleLogin = useCallback(async (email: string, password: string) => {
     const data = await AuthService.auth(email, password);
 
     if(data instanceof Error){
-      console.log(data.message);
-      return data.message;
+      showSnackBar(data.message, 'error');
+      return;
     } else {
-      localStorage.setItem('KEY', JSON.stringify(data.token));
+      localStorage.setItem('KEY', data.token);
       setAcessToken(data.token);
-      showSnackBar('Bem vindo', 'success');
+      showSnackBar('Bem vindo!', 'success');
     }
   }, []);
 
@@ -53,6 +68,12 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) => {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={backdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {children}
     </AuthContext.Provider>
   );

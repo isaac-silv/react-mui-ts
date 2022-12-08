@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, Icon, IconButton, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, Button, Card, CardActions, CardContent, CircularProgress, Icon, IconButton, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useAuthContext, useSnackBar } from '../../contexts';
 import * as yup from 'yup';
@@ -49,6 +49,7 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
         });
       });
   };
+
 
   if(isAuthenticated) {
     return (

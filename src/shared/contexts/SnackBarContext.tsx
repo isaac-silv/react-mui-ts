@@ -26,7 +26,6 @@ const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({
 
   const handleClose = () => {
     setOpen(false);
-    setTypeColor('info');
   };
 
   return (

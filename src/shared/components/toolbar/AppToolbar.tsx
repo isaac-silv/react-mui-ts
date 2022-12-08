@@ -5,13 +5,9 @@ import {
   IconButton,
   Typography,
   Menu,
-  Container,
   Avatar,
-  Tooltip,
   MenuItem,
   Icon,
-  TextField,
-  Button,
   Paper,
   InputBase,
   useMediaQuery,
@@ -19,11 +15,9 @@ import {
 
 
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAppThemeContext, useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useAuthContext, useDrawerContext } from '../../contexts';
 import { useTheme } from '@mui/material';
-import { borderRadius } from '@mui/system';
 
-const settings = ['Perfil', 'Sair'];
 
 interface IToolBarProps {
   textSearch?: string;
@@ -40,10 +34,9 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
   const { toggleTheme, themeName } = useAppThemeContext();
 
   const theme = useTheme();
-
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const { logout } = useAuthContext();
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
 
@@ -146,11 +139,14 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">Perfil</Typography>
+            </MenuItem>
+
+            <MenuItem onClick={logout}>
+              <Typography textAlign="center">Sair</Typography>
+            </MenuItem>
+
           </Menu>
         </Box>
       </Toolbar>

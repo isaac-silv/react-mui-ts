@@ -16,15 +16,31 @@ const auth = async (email: string, password: string): Promise<IAuth | Error> => 
     return new Error('Error no login');
 
   } catch (error: any) {
+    const { errors } = error.response.data;
 
-    const {errors} = error.response.data;
-    console.log(error);
+    return new Error(errors);
+  }
+};
 
+const verifyToken = async () => {
+  try {
 
-    return new Error((error as {message:  string}).message || 'Error no login');
+    const { data } = await Api.get('/');
+
+    if(data) {
+      return data;
+    }
+
+    return new Error('Error de autenticação');
+
+  } catch (error: any) {
+    const { errors } = error.response.data;
+
+    return new Error(errors);
   }
 };
 
 export const AuthService = {
   auth,
+  verifyToken,
 };
