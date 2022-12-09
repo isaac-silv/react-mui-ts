@@ -7,9 +7,9 @@ import { AppThemeProvider, AuthProvider, DrawerProvider, SnackBarProvider } from
 export const App = () => {
   return (
     <SnackBarProvider>
-      <AuthProvider>
-        <AppThemeProvider>
 
+      <AppThemeProvider>
+        <AuthProvider>
           <LoginPage>
             <DrawerProvider>
               <BrowserRouter>
@@ -21,9 +21,10 @@ export const App = () => {
               </BrowserRouter>
             </DrawerProvider>
           </LoginPage>
+        </AuthProvider>
 
-        </AppThemeProvider>
-      </AuthProvider>
+      </AppThemeProvider>
+
     </SnackBarProvider>
   );
 };

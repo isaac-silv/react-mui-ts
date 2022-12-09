@@ -1,4 +1,5 @@
 import { Avatar, Box, Divider, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
@@ -20,8 +21,8 @@ export const Dashboard = () => {
       )}
     >
       <Grid container spacing={2}>
-        <Grid item container spacing={2}>
-          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
+        <Grid item container spacing={2} xs={mdDown ? 12 : 6}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Grid
               component={Paper}
               sx={{
@@ -37,35 +38,40 @@ export const Dashboard = () => {
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
                   borderBottomLeftRadius: theme.spacing(1),
-                  bgcolor: theme.palette.secondary.main,
-                  color: '#ffffff'
                 }}>
-                  <Icon fontSize='large'>
-                    groups_2
-                  </Icon>
+                  <Avatar sx={{
+                    bgcolor: theme.palette.primary.light
+                  }}>
+                    <Icon fontSize='medium'>
+                      groups_2
+                    </Icon>
+                  </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} container>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
+              <Grid item xs={8} display='flex' direction='row'>
+                <Grid>
+                  <Divider orientation='vertical' />
+                </Grid>
+                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontSize: lgDown ? '1.3rem' : '1.8rem',
                       fontWeight: 700
                     }}>
                     468
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '0.7rem' : '0.9rem',
-                      fontWeight: 400
+                      fontSize: lgDown ? '0.7rem' : '1rem',
+                      fontWeight: 300
                     }}>
-                    ALUNOS
+                    Alunos
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Grid
               component={Paper}
               sx={{
@@ -81,19 +87,24 @@ export const Dashboard = () => {
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
                   borderBottomLeftRadius: theme.spacing(1),
-                  bgcolor: '#56CA00',
-                  color: '#ffffff'
                 }}>
-                  <Icon fontSize='large'>
-                    school
-                  </Icon>
+                  <Avatar sx={{
+                    bgcolor: theme.palette.secondary.light
+                  }}>
+                    <Icon fontSize='medium'>
+                      school
+                    </Icon>
+                  </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} container>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
+              <Grid item xs={8} display='flex' direction='row'>
+                <Grid>
+                  <Divider orientation='vertical' />
+                </Grid>
+                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontSize: lgDown ? '1.3rem' : '1.8rem',
                       fontWeight: 700
                     }}
                   >
@@ -101,17 +112,17 @@ export const Dashboard = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '0.7rem' : '0.9rem',
-                      fontWeight: 400
+                      fontSize: lgDown ? '0.7rem' : '1rem',
+                      fontWeight: 300
                     }}
                   >
-                    PROFESSORES
+                    Professores
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Grid
               component={Paper}
               sx={{
@@ -127,19 +138,24 @@ export const Dashboard = () => {
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
                   borderBottomLeftRadius: theme.spacing(1),
-                  bgcolor: '#FFB400',
-                  color: '#ffffff'
                 }}>
-                  <Icon fontSize='large'>
-                    supervised_user_circle
-                  </Icon>
+                  <Avatar sx={{
+                    bgcolor: theme.palette.primary.light
+                  }}>
+                    <Icon fontSize='medium'>
+                      supervised_user_circle
+                    </Icon>
+                  </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} container>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)} zeroMinWidth wrap='nowrap'>
+              <Grid item xs={8} display='flex' direction='row'>
+                <Grid>
+                  <Divider orientation='vertical' />
+                </Grid>
+                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)} zeroMinWidth wrap='nowrap'>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontSize: lgDown ? '1.3rem' : '1.8rem',
                       fontWeight: 700
                     }}
                   >
@@ -148,17 +164,17 @@ export const Dashboard = () => {
                   <Typography
                     noWrap
                     sx={{
-                      fontSize: lgDown ? '0.7rem' : '0.9rem',
-                      fontWeight: 400
+                      fontSize: lgDown ? '0.7rem' : '1rem',
+                      fontWeight: 300
                     }}
                   >
-                    COLABORADORES
+                    Colaboradores
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={smDown ? 12 : mdDown ? 6 : 3}>
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Grid
               component={Paper}
               sx={{
@@ -174,19 +190,24 @@ export const Dashboard = () => {
                   padding: 3,
                   borderTopLeftRadius: theme.spacing(1),
                   borderBottomLeftRadius: theme.spacing(1),
-                  bgcolor: '#16B1FF',
-                  color: '#ffffff'
                 }}>
-                  <Icon fontSize='large'>
-                    folder_shared
-                  </Icon>
+                  <Avatar sx={{
+                    bgcolor: theme.palette.secondary.light
+                  }}>
+                    <Icon fontSize='medium'>
+                      folder_shared
+                    </Icon>
+                  </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} container>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(1)}>
+              <Grid item xs={8} display='flex' direction='row'>
+                <Grid>
+                  <Divider orientation='vertical' />
+                </Grid>
+                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.5rem',
+                      fontSize: lgDown ? '1.3rem' : '1.8rem',
                       fontWeight: 700
                     }}
                   >
@@ -194,11 +215,11 @@ export const Dashboard = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: lgDown ? '0.7rem' : '0.9rem',
-                      fontWeight: 400
+                      fontSize: lgDown ? '0.7rem' : '1rem',
+                      fontWeight: 300
                     }}
                   >
-                    TURMAS
+                    Turmas
                   </Typography>
                 </Grid>
               </Grid>
@@ -230,8 +251,8 @@ export const Dashboard = () => {
                 <Avatar
                   sx={{
                     flexGrow: 0,
-                    bgcolor: '#EDE7F6',
-                    color: theme.palette.primary.main
+                    bgcolor: theme.palette.primary.main,
+                    color: '#ffffff'
                   }}
                   variant='rounded'
                 >
@@ -275,8 +296,8 @@ export const Dashboard = () => {
                 <Avatar
                   sx={{
                     flexGrow: 0,
-                    bgcolor: '#EDE7F6',
-                    color: theme.palette.primary.main
+                    bgcolor: theme.palette.primary.main,
+                    color: '#ffffff'
                   }}
                   variant='rounded'
                 >

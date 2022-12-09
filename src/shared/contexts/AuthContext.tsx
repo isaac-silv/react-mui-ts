@@ -69,7 +69,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
   return (
     <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ color: (theme) => theme.palette.primary.dark, zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={backdrop}
       >
         <CircularProgress color="inherit" />
