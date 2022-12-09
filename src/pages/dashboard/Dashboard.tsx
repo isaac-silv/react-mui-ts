@@ -226,6 +226,11 @@ export const Dashboard = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item container xs={mdDown ? 12 : 6}>
+          <Grid item container component={Paper}>
+
+          </Grid>
+        </Grid>
 
         <Grid item container spacing={2}>
           <Grid item xs={mdDown ? 12 : 6}>
