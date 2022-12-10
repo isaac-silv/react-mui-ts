@@ -1,9 +1,11 @@
 import { Backdrop, CircularProgress } from '@mui/material';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthService } from '../services/api/auth/AuthService';
+import { User } from '../types/User';
 import { useSnackBar } from './SnackBarContext';
 
 interface IAuthContextData {
+  user: User | null,
   isAuthenticated: boolean,
   login:  (email: string, password: string) => Promise<string | void>
   logout: () => void
@@ -17,8 +19,10 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
 
   const { showSnackBar } = useSnackBar();
 
-  const [acessToken, setAcessToken] = useState<string>();
+  const [ user, setUser ] = useState<User | null>(null);
+  const [ acessToken, setAcessToken ] = useState<string>();
   const [ backdrop, setBackdrop ] = useState(false);
+
 
   const isAuthenticated = useMemo(() => !!acessToken, [acessToken]);
 
@@ -36,6 +40,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
           localStorage.removeItem('KEY');
           showSnackBar('Sessão expirada, realize login novamente.', 'info');
         } else {
+          setUser(response);
           setBackdrop(false);
           setAcessToken(acessToken);
         }
@@ -56,8 +61,9 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
       return;
     } else {
       localStorage.setItem('KEY', data.token);
+      setUser(data.user);
       setAcessToken(data.token);
-      showSnackBar('Bem vindo!', 'success');
+      showSnackBar(`Bem vindo, ${data.user?.nome}!`, 'success');
     }
   }, []);
 
@@ -67,7 +73,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login: handleLogin, logout: handleLogout }}>
       <Backdrop
         sx={{ color: (theme) => theme.palette.primary.dark, zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={backdrop}

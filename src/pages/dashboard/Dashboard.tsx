@@ -1,6 +1,7 @@
 import { Avatar, Box, Divider, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { AppToolbar } from '../../shared/components';
+import { useAuthContext } from '../../shared/contexts';
 import { LayoutBase } from '../../shared/layouts';
 
 import { Donutchart } from './charts/Doughnut';
@@ -8,6 +9,8 @@ import { ReceitaChart } from './charts/Receita';
 
 
 export const Dashboard = () => {
+
+  const { user } = useAuthContext();
 
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -20,6 +23,11 @@ export const Dashboard = () => {
         <AppToolbar />
       )}
     >
+      <Box>
+        <Typography>
+          Olá {user?.nome}
+        </Typography>
+      </Box>
       <Grid container spacing={2}>
         <Grid item container spacing={2} xs={mdDown ? 12 : 6}>
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
@@ -48,7 +56,7 @@ export const Dashboard = () => {
                   </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} display='flex' direction='row'>
+              <Grid item xs={8} display='flex'>
                 <Grid>
                   <Divider orientation='vertical' />
                 </Grid>
@@ -97,7 +105,7 @@ export const Dashboard = () => {
                   </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} display='flex' direction='row'>
+              <Grid item xs={8} display='flex'>
                 <Grid>
                   <Divider orientation='vertical' />
                 </Grid>
@@ -148,7 +156,7 @@ export const Dashboard = () => {
                   </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} display='flex' direction='row'>
+              <Grid item xs={8} display='flex'>
                 <Grid>
                   <Divider orientation='vertical' />
                 </Grid>
@@ -200,7 +208,7 @@ export const Dashboard = () => {
                   </Avatar>
                 </Grid>
               </Grid>
-              <Grid item xs={8} display='flex' direction='row'>
+              <Grid item xs={8} display='flex'>
                 <Grid>
                   <Divider orientation='vertical' />
                 </Grid>

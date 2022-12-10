@@ -1,7 +1,9 @@
+import { User } from '../../../types/User';
 import { Api } from '../axios-config';
 
 interface IAuth {
-  token: string;
+  user: User | null,
+  token: string,
 }
 
 const auth = async (email: string, password: string): Promise<IAuth | Error> => {
