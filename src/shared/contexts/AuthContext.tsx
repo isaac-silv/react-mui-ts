@@ -7,8 +7,8 @@ import { useSnackBar } from './SnackBarContext';
 interface IAuthContextData {
   user: User | null,
   isAuthenticated: boolean,
-  login:  (email: string, password: string) => Promise<string | void>
-  logout: () => void
+  login:  (email: string, password: string) => Promise<string | void>,
+  logout: () => void,
 }
 
 
@@ -46,8 +46,9 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
         }
 
       } else {
-        setBackdrop(false);
+        setUser(null);
         setAcessToken(undefined);
+        setBackdrop(false);
       }
     };
     valideteToken();
@@ -70,6 +71,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
   const handleLogout = useCallback(() => {
     localStorage.removeItem('KEY');
     setAcessToken(undefined);
+    setUser(null);
   }, []);
 
   return (

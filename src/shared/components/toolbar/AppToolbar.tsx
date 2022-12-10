@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Toolbar,
@@ -17,18 +17,13 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppThemeContext, useAuthContext, useDrawerContext } from '../../contexts';
 import { useTheme } from '@mui/material';
+import { AlunoService } from '../../services/api/aluno/AlunoService';
 
 
-interface IToolBarProps {
-  textSearch?: string;
-  lookInputSeach?: boolean;
-  changeTextSearch?: (newText: string) => void;
-}
+export const AppToolbar: React.FC = () => {
 
-
-export const AppToolbar: React.FC<IToolBarProps> = ({
-  textSearch, lookInputSeach = false, changeTextSearch,
-}) => {
+  const [ alunos, setAlunos ] = useState();
+  const [ busca, setBusca ] = useState<string>('');
 
   const { toggleDrawerOpen } = useDrawerContext();
   const { toggleTheme, themeName } = useAppThemeContext();
@@ -37,8 +32,16 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const { logout } = useAuthContext();
 
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [ searchAnchor, setSearchAnchor ] = useState<null | HTMLElement>(null);
 
+  const handleOpenSearchList = (event: React.MouseEvent<HTMLElement>) => {
+    setSearchAnchor(event.currentTarget);
+  };
+
+  const handleCloseSearchList = () => {
+    setSearchAnchor(null);
+  };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -47,6 +50,14 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  useEffect(() => {
+    const getAlunos = async () => {
+      const data = await AlunoService.getAll();
+      setAlunos(data);
+    };
+    getAlunos();
+  }, [busca]);
 
   return (
     <Box>
@@ -78,8 +89,9 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
             }}
           >
             <InputBase
-              value={textSearch}
-              onChange={(e) => changeTextSearch?.(e.target.value)}
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+              onClick={handleOpenSearchList}
               sx={{
                 ml: 1,
                 flex: 1
@@ -99,6 +111,26 @@ export const AppToolbar: React.FC<IToolBarProps> = ({
               <Icon>person_search</Icon>
             </IconButton>
           </Paper>
+          <Menu
+            sx={{ mt: '45px' }}
+            id="search-list"
+            anchorEl={searchAnchor}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={Boolean(searchAnchor)}
+            onClose={handleCloseSearchList}
+          >
+            <MenuItem onClick={handleCloseSearchList} sx={{width: smDown ? 200 : 250,}}>
+              <Typography textAlign="center">Resultado da busca...</Typography>
+            </MenuItem>
+          </Menu>
         </Box>
 
         <Box sx={{ mr: theme.spacing(1) }}>
