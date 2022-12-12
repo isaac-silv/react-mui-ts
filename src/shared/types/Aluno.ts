@@ -1,6 +1,10 @@
-export type User = {
+export type Aluno = {
   id: number;
   nome: string;
+  sobrenome: string;
   email: string;
-  password?: string;
+  idade: number;
+  peso: number;
+  altura: number;
+  Fotos: string[];
 }

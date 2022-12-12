@@ -1,9 +1,25 @@
-import { Avatar, Box, Grid, Icon, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TablePagination, TableRow } from '@mui/material';
+import { Avatar, Box, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
+import { AlunoService } from '../../shared/services/api/aluno/AlunoService';
+import { Aluno } from '../../shared/types/Aluno';
 
 
 export const Alunos = () => {
+
+  const [ alunos, setAlunos ] = useState<Aluno[]>([]);
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const getAlunos = async () => {
+      const data = await AlunoService.getAll();
+      setAlunos(data);
+      setIsLoading(false);
+    };
+    getAlunos();
+  }, []);
 
   return (
     <LayoutBase
@@ -15,48 +31,73 @@ export const Alunos = () => {
         <Grid item container xs={8}>
           <TableContainer component={Paper}>
             <Table >
-              <TableBody>
+              <TableHead>
                 <TableRow>
                   <TableCell>
                     Aluno(a)
                   </TableCell>
                   <TableCell align='right'>
-                    Contato
+                    Idade
                   </TableCell>
                   <TableCell align='right'>
-                    Turma
+                    Altura
                   </TableCell>
                   <TableCell align='right'>
-                    Turno
+                    Peso
                   </TableCell>
                   <TableCell align='right'>
                     Editar
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Box display='flex' alignItems='center' gap={2}>
-                      <Avatar src='https://www.svgrepo.com/show/8137/avatar.svg' />
-                      Isaac Silva
-                    </Box>
-                  </TableCell>
-                  <TableCell align='right'>
-                    (99) 90000-0000
-                  </TableCell>
-                  <TableCell align='right'>
-                    2º ano
-                  </TableCell>
-                  <TableCell align='right'>
-                    Tarde
-                  </TableCell>
-                  <TableCell align='right'>
-                    <IconButton>
-                      <Icon>
-                        manage_accounts
-                      </Icon>
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+              </TableHead>
+              <TableBody>
+                {isLoading ?
+                  <TableRow>
+                    <TableCell>
+                      <Box display='flex' alignItems='center' gap={2}>
+                        <Skeleton variant='circular' width={40} height={40} />
+                        <Skeleton width={120} height={30} />
+                      </Box>
+                    </TableCell>
+                    <TableCell align='right'>
+                      <Skeleton height={30} />
+                    </TableCell>
+                    <TableCell align='right'>
+                      <Skeleton  height={30} />
+                    </TableCell>
+                    <TableCell align='right'>
+                      <Skeleton height={30} />
+                    </TableCell>
+                    <TableCell align='right'>
+                      <Skeleton height={30}/>
+                    </TableCell>
+                  </TableRow>
+                  : alunos.map(alunos => (
+                    <TableRow key={alunos.id}>
+                      <TableCell>
+                        <Box display='flex' alignItems='center' gap={2}>
+                          <Avatar src='https://www.svgrepo.com/show/8137/avatar.svg' />
+                          {alunos.nome}
+                        </Box>
+                      </TableCell>
+                      <TableCell align='right'>
+                        {alunos.idade}
+                      </TableCell>
+                      <TableCell align='right'>
+                        {alunos.altura}
+                      </TableCell>
+                      <TableCell align='right'>
+                        {alunos.peso}
+                      </TableCell>
+                      <TableCell align='right'>
+                        <IconButton>
+                          <Icon>
+                            manage_accounts
+                          </Icon>
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  )) }
               </TableBody>
             </Table>
           </TableContainer>
