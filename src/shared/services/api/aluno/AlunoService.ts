@@ -1,4 +1,5 @@
 import { Api } from '../axios-config';
+import { AlunoFilter } from '../../../types/Aluno';
 
 
 
@@ -38,8 +39,27 @@ const getById = async (id: number): Promise<any> => {
   }
 };
 
+const edit = async (id: number, alunoData: AlunoFilter): Promise<any> => {
+  try {
+
+    const { data } = await Api.put(`/alunos/${id}`, alunoData);
+
+    if(data) {
+      return data;
+    }
+
+    return new Error('Error de conexão');
+
+  } catch (error: any) {
+    const { errors } = error.response.data;
+
+    return new Error(errors);
+  }
+};
+
 
 export const AlunoService = {
   getAll,
   getById,
+  edit,
 };

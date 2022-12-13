@@ -1,5 +1,6 @@
 import { Avatar, Box, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 import { AlunoService } from '../../shared/services/api/aluno/AlunoService';
@@ -10,6 +11,8 @@ export const Alunos = () => {
 
   const [ alunos, setAlunos ] = useState<Aluno[]>([]);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -90,7 +93,7 @@ export const Alunos = () => {
                         {alunos.peso}
                       </TableCell>
                       <TableCell align='right'>
-                        <IconButton>
+                        <IconButton onClick={() => navigate(`/aluno/${alunos.id}`)}>
                           <Icon>
                             manage_accounts
                           </Icon>

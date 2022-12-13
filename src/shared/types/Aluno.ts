@@ -8,3 +8,12 @@ export type Aluno = {
   altura: number;
   Fotos: string[];
 }
+
+export type AlunoFilter = {
+  nome: string | null;
+  sobrenome: string | null;
+  email: string | null;
+  idade: number | null;
+  peso: number | null;
+  altura: number | null;
+}

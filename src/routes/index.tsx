@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Dashboard, Alunos, Aluno } from '../pages';
+import { Dashboard, Alunos, AlunoPage } from '../pages';
 import { useDrawerContext } from '../shared/contexts';
 
 export const AppRoutes = () => {
@@ -33,7 +33,7 @@ export const AppRoutes = () => {
       />
       <Route
         path="/aluno/:params"
-        element={<Aluno />}
+        element={<AlunoPage />}
       />
 
       <Route
