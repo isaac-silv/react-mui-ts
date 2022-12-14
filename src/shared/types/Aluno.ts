@@ -10,6 +10,7 @@ export type Aluno = {
 }
 
 export type AlunoFilter = {
+  id?: number;
   nome: string | null;
   sobrenome: string | null;
   email: string | null;

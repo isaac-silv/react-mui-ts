@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from '@mui/material';
+import { Avatar, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
@@ -15,9 +15,11 @@ export const Alunos = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('BUSCANDO ALUNOS');
     setIsLoading(true);
     const getAlunos = async () => {
       const data = await AlunoService.getAll();
+      console.log(data);
       setAlunos(data);
       setIsLoading(false);
     };
@@ -33,11 +35,20 @@ export const Alunos = () => {
       <Grid container spacing={2}>
         <Grid item container xs={8}>
           <TableContainer component={Paper}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 4}}>
+              <Typography variant='h5'>
+                Alunos
+              </Typography>
+              <Button variant='contained' onClick={() => navigate('/aluno/cadastro')}>
+                Novo Aluno
+              </Button>
+            </Box>
+            <Divider />
             <Table >
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    Aluno(a)
+                    Nome
                   </TableCell>
                   <TableCell align='right'>
                     Idade
@@ -54,7 +65,7 @@ export const Alunos = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {isLoading ?
+                {isLoading && (
                   <TableRow>
                     <TableCell>
                       <Box display='flex' alignItems='center' gap={2}>
@@ -75,32 +86,34 @@ export const Alunos = () => {
                       <Skeleton height={30}/>
                     </TableCell>
                   </TableRow>
-                  : alunos.map(alunos => (
-                    <TableRow key={alunos.id}>
-                      <TableCell>
-                        <Box display='flex' alignItems='center' gap={2}>
-                          <Avatar src='https://www.svgrepo.com/show/8137/avatar.svg' />
-                          {alunos.nome}
-                        </Box>
-                      </TableCell>
-                      <TableCell align='right'>
-                        {alunos.idade}
-                      </TableCell>
-                      <TableCell align='right'>
-                        {alunos.altura}
-                      </TableCell>
-                      <TableCell align='right'>
-                        {alunos.peso}
-                      </TableCell>
-                      <TableCell align='right'>
-                        <IconButton onClick={() => navigate(`/aluno/${alunos.id}`)}>
-                          <Icon>
-                            manage_accounts
-                          </Icon>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  )) }
+                )}
+
+                {alunos.map(alunos => (
+                  <TableRow key={alunos.id}>
+                    <TableCell>
+                      <Box display='flex' alignItems='center' gap={2}>
+                        <Avatar src='https://www.svgrepo.com/show/8137/avatar.svg' />
+                        {alunos.nome}
+                      </Box>
+                    </TableCell>
+                    <TableCell align='right'>
+                      {alunos.idade}
+                    </TableCell>
+                    <TableCell align='right'>
+                      {alunos.altura}
+                    </TableCell>
+                    <TableCell align='right'>
+                      {alunos.peso}
+                    </TableCell>
+                    <TableCell align='right'>
+                      <IconButton onClick={() => navigate(`/aluno/${alunos.id}`)}>
+                        <Icon>
+                          manage_accounts
+                        </Icon>
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                )) }
               </TableBody>
             </Table>
           </TableContainer>

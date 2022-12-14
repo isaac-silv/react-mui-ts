@@ -1,4 +1,4 @@
-import { AlertColor, Snackbar, Alert } from '@mui/material';
+import { AlertColor, Snackbar, Alert, Slide, Slider } from '@mui/material';
 import { useState, createContext, useContext } from 'react';
 
 type SnackBarContextActions = {
@@ -33,8 +33,9 @@ const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({
       <Snackbar
         open={open}
         autoHideDuration={5000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        onClose={handleClose}>
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        onClose={handleClose}
+        sx={{paddingTop: 6}}>
         <Alert onClose={handleClose} severity={typeColor}>
           {message}
         </Alert>

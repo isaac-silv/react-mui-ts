@@ -22,7 +22,6 @@ import { AlunoService } from '../../services/api/aluno/AlunoService';
 
 export const AppToolbar: React.FC = () => {
 
-  const [ alunos, setAlunos ] = useState();
   const [ busca, setBusca ] = useState<string>('');
 
   const { toggleDrawerOpen } = useDrawerContext();
@@ -50,14 +49,6 @@ export const AppToolbar: React.FC = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  useEffect(() => {
-    const getAlunos = async () => {
-      const data = await AlunoService.getAll();
-      setAlunos(data);
-    };
-    getAlunos();
-  }, [busca]);
 
   return (
     <Box>

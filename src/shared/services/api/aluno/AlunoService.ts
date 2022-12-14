@@ -57,9 +57,47 @@ const edit = async (id: number, alunoData: AlunoFilter): Promise<any> => {
   }
 };
 
+const newAluno = async (alunoData: AlunoFilter): Promise<any> => {
+  try {
+
+    const { data } = await Api.post('/alunos', alunoData);
+
+    if(data) {
+      return data;
+    }
+
+    return new Error('Error de conexão');
+
+  } catch (error: any) {
+    const { errors } = error.response.data;
+
+    return new Error(errors);
+  }
+};
+
+const deleteAluno = async (id: number): Promise<any> => {
+  try {
+
+    const { data } = await Api.delete(`/alunos/${id}`);
+
+    if(data) {
+      return data;
+    }
+
+    return new Error('Error de conexão');
+
+  } catch (error: any) {
+    const { errors } = error.response.data;
+
+    return new Error(errors);
+  }
+};
+
 
 export const AlunoService = {
   getAll,
   getById,
   edit,
+  newAluno,
+  deleteAluno,
 };

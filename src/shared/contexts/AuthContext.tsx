@@ -3,8 +3,10 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { AuthService } from '../services/api/auth/AuthService';
 import { User } from '../types/User';
 import { useSnackBar } from './SnackBarContext';
+import { Api } from '../services/api/axios-config/index';
 
 interface IAuthContextData {
+  acessToken: string,
   user: User | null,
   isAuthenticated: boolean,
   login:  (email: string, password: string) => Promise<string | void>,
@@ -20,9 +22,8 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
   const { showSnackBar } = useSnackBar();
 
   const [ user, setUser ] = useState<User | null>(null);
-  const [ acessToken, setAcessToken ] = useState<string>();
+  const [ acessToken, setAcessToken ] = useState<string>('');
   const [ backdrop, setBackdrop ] = useState(false);
-
 
   const isAuthenticated = useMemo(() => !!acessToken, [acessToken]);
 
@@ -35,7 +36,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
         const response = await AuthService.verifyToken();
 
         if(response.message) {
-          setAcessToken(undefined);
+          setAcessToken('');
           setBackdrop(false);
           localStorage.removeItem('KEY');
           showSnackBar('Sessão expirada, realize login novamente.', 'info');
@@ -44,10 +45,9 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
           setBackdrop(false);
           setAcessToken(acessToken);
         }
-
       } else {
         setUser(null);
-        setAcessToken(undefined);
+        setAcessToken('');
         setBackdrop(false);
       }
     };
@@ -63,6 +63,7 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
     } else {
       localStorage.setItem('KEY', data.token);
       setUser(data.user);
+      Api.defaults.headers.Authorization = `Bearer ${data.token}`;
       setAcessToken(data.token);
       showSnackBar(`Bem vindo, ${data.user?.nome}!`, 'success');
     }
@@ -70,12 +71,13 @@ export const AuthProvider = ({children}: {children: JSX.Element}) => {
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('KEY');
-    setAcessToken(undefined);
+    setAcessToken('');
+    delete Api.defaults.headers.Authorization;
     setUser(null);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login: handleLogin, logout: handleLogout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login: handleLogin, logout: handleLogout, acessToken }}>
       <Backdrop
         sx={{ color: (theme) => theme.palette.primary.dark, zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={backdrop}
