@@ -6,7 +6,7 @@ export type Aluno = {
   idade: number;
   peso: number;
   altura: number;
-  Fotos: string[];
+  Fotos: Foto[];
 }
 
 export type AlunoFilter = {
@@ -17,4 +17,9 @@ export type AlunoFilter = {
   idade: number | null;
   peso: number | null;
   altura: number | null;
+}
+
+type Foto = {
+  url: 'string';
+  filename: 'string';
 }

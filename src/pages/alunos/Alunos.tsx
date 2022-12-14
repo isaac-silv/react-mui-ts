@@ -1,4 +1,5 @@
-import { Avatar, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
+import { Edit } from '@mui/icons-material';
+import { Avatar, Badge, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
@@ -15,7 +16,6 @@ export const Alunos = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('BUSCANDO ALUNOS');
     setIsLoading(true);
     const getAlunos = async () => {
       const data = await AlunoService.getAll();
@@ -92,7 +92,7 @@ export const Alunos = () => {
                   <TableRow key={alunos.id}>
                     <TableCell>
                       <Box display='flex' alignItems='center' gap={2}>
-                        <Avatar src='https://www.svgrepo.com/show/8137/avatar.svg' />
+                        <Avatar src={alunos.Fotos[0] ? alunos.Fotos[0].url : undefined } />
                         {alunos.nome}
                       </Box>
                     </TableCell>
