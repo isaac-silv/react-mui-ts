@@ -10,7 +10,7 @@ export const AlunosAreaChart = () =>
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return(
-    <Box height='100%' width='100%'>
+    <Box height='100%' width='100%' paddingTop={0}>
       <Chart
         width='100%'
         height='100%'
@@ -18,7 +18,7 @@ export const AlunosAreaChart = () =>
         series={[
           {
             name: '2022',
-            data: [410, 415, 420, 415, 425, 420, 415, 444, 451, 480, 474, 460]
+            data: [430, 415, 420, 440, 460, 450, 447, 444, 451, 480, 474, 460]
           }
         ]}
 

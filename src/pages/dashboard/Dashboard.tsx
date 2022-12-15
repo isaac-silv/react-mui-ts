@@ -1,9 +1,13 @@
-import { FolderShared, Groups2, School, SupervisedUserCircle } from '@mui/icons-material';
-import { Avatar, Box, Divider, Grid, Icon, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { Avatar, Box, Divider, Grid, Icon, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { AppToolbar } from '../../shared/components';
 import { useAuthContext } from '../../shared/contexts';
 import { LayoutBase } from '../../shared/layouts';
+import { AlunosCard } from './cards/AlunosCard';
+import { ColabCard } from './cards/ColabCard';
+import { ProfessoresCard } from './cards/ProfessoresCard';
+import { TurmasCard } from './cards/TurmasCard';
 import { AlunosAreaChart } from './charts/AlunosAreaChart';
 
 import { Donutchart } from './charts/Doughnut';
@@ -25,191 +29,74 @@ export const Dashboard = () => {
         <AppToolbar />
       )}
     >
-      <Grid container spacing={2}>
-        <Grid item container spacing={2} xs={mdDown ? 12 : 4}>
+      <Grid container spacing={4}>
+        <Grid item container spacing={4} xs={mdDown ? 12 : 8}>
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Box component={Paper}>
-              <List
-                subheader={
-                  <ListSubheader
-                    component="div"
-                    color='inherit'
-                    sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.3rem',
-                      fontWeight: 500
-                    }}
-                  >
-                    Alunos
-                  </ListSubheader>
-                }
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar variant='rounded' sx={{
-                      bgcolor: theme.palette.primary.main,
-                      width: 60,
-                      height: 60
-                    }}>
-                      <Groups2 />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        sx={{
-                          fontSize: lgDown ? '1.3rem' : '1.8rem',
-                          fontWeight: 700,
-                          pl: 2
-                        }}
-                      >
-                        460
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+              <AlunosCard />
             </Box>
           </Grid>
 
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Box component={Paper}>
-              <List
-                subheader={
-                  <ListSubheader
-                    component="div"
-                    color='inherit'
-                    sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.3rem',
-                      fontWeight: 500
-                    }}
-                  >
-                    Professores
-                  </ListSubheader>
-                }
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar variant='rounded' sx={{
-                      bgcolor: theme.palette.secondary.main,
-                      width: 60,
-                      height: 60
-                    }}>
-                      <School />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        sx={{
-                          fontSize: lgDown ? '1.3rem' : '1.8rem',
-                          fontWeight: 700,
-                          pl: 2
-                        }}
-                      >
-                        30
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+              <ProfessoresCard />
             </Box>
           </Grid>
 
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Box component={Paper}>
-              <List
-                subheader={
-                  <ListSubheader
-                    component="div"
-                    color='inherit'
-                    sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.3rem',
-                      fontWeight: 500
-                    }}
-                  >
-                    Colaboradores
-                  </ListSubheader>
-                }
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar variant='rounded' sx={{
-                      bgcolor: '#f44336',
-                      width: 60,
-                      height: 60
-                    }}>
-                      <SupervisedUserCircle />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        sx={{
-                          fontSize: lgDown ? '1.3rem' : '1.8rem',
-                          fontWeight: 700,
-                          pl: 2
-                        }}
-                      >
-                        20
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+              <ColabCard />
             </Box>
           </Grid>
 
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Box component={Paper}>
-              <List
-                subheader={
-                  <ListSubheader
-                    component="div"
-                    color='inherit'
-                    sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.3rem',
-                      fontWeight: 500
-                    }}
-                  >
-                    Turmas
-                  </ListSubheader>
-                }
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar variant='rounded' sx={{
-                      bgcolor: '#57CA22',
-                      width: 60,
-                      height: 60
-                    }}>
-                      <FolderShared />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        sx={{
-                          fontSize: lgDown ? '1.3rem' : '1.8rem',
-                          fontWeight: 700,
-                          pl: 2
-                        }}
-                      >
-                        20
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+              <TurmasCard />
             </Box>
           </Grid>
 
         </Grid>
-        <Grid item container xs={mdDown ? 12 : 8}>
-          <Box component={Paper} width='100%'>
+        <Grid item container xs={mdDown ? 12 : 4}>
+          <Box component={Paper} display='flex' flexDirection='column' width='100%' padding={0}>
+            <Box padding={4} sx={{fontColor: '#70D242'}}>
+              <Typography
+                sx={{
+                  fontSize: lgDown ? '1.3rem' : '1rem',
+                  fontWeight: 500,
+                }}
+              >
+                MATRICULADOS NO ANO
+              </Typography>
+              <Box display='flex' alignItems='center' color='#61CD2F'>
+                <Add fontSize='medium' />
+                <Typography
+                  sx={{
+                    fontSize: lgDown ? '0.8rem' : '42px',
+                    fontWeight: 800,
+                  }}
+                >
+                  50
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: lgDown ? '0.8rem' : '1rem',
+                    fontWeight: 300,
+                    pl: 1
+                  }}
+                >
+                  +8%
+                </Typography>
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: lgDown ? '0.8rem' : '1rem',
+                  fontWeight: 300,
+                  mt: -2
+                }}
+              >
+                Novos alunos
+              </Typography>
+            </Box>
             <AlunosAreaChart />
           </Box>
         </Grid>
@@ -260,6 +147,7 @@ export const Dashboard = () => {
               </Grid>
             </Grid>
           </Grid>
+
           <Grid item xs={mdDown ? 12 : 6}>
             <Grid
               component={Paper}
