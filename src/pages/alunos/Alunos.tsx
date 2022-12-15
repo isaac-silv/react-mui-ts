@@ -1,5 +1,5 @@
 import { Edit } from '@mui/icons-material';
-import { Avatar, Badge, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
+import { Avatar, Badge, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
@@ -12,6 +12,8 @@ export const Alunos = () => {
 
   const [ alunos, setAlunos ] = useState<Aluno[]>([]);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const [ page, setPage ] = useState(0);
+  const [ alunosPerPage, setAlunosPerPage ] = useState(5);
 
   const navigate = useNavigate();
 
@@ -26,6 +28,17 @@ export const Alunos = () => {
     getAlunos();
   }, []);
 
+
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAlunosPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
     <LayoutBase
       AppToolbar={(
@@ -33,7 +46,7 @@ export const Alunos = () => {
       )}
     >
       <Grid container spacing={2}>
-        <Grid item container xs={8}>
+        <Grid item container>
           <TableContainer component={Paper}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 4}}>
               <Typography variant='h5'>
@@ -88,7 +101,7 @@ export const Alunos = () => {
                   </TableRow>
                 )}
 
-                {alunos.map(alunos => (
+                {alunos.slice(page * alunosPerPage, page * alunosPerPage + alunosPerPage).map(alunos => (
                   <TableRow key={alunos.id}>
                     <TableCell>
                       <Box display='flex' alignItems='center' gap={2}>
@@ -116,12 +129,19 @@ export const Alunos = () => {
                 )) }
               </TableBody>
             </Table>
+            <Box sx={{paddingRight: 2}}>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 15]}
+                component="div"
+                count={alunos.length}
+                rowsPerPage={alunosPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                labelRowsPerPage={'Alunos por página:'}
+              />
+            </Box>
           </TableContainer>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper>
-            Ranking
-          </Paper>
         </Grid>
       </Grid>
     </LayoutBase>

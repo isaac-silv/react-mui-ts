@@ -1,8 +1,10 @@
-import { Avatar, Box, Divider, Grid, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { FolderShared, Groups2, School, SupervisedUserCircle } from '@mui/icons-material';
+import { Avatar, Box, Divider, Grid, Icon, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { AppToolbar } from '../../shared/components';
 import { useAuthContext } from '../../shared/contexts';
 import { LayoutBase } from '../../shared/layouts';
+import { AlunosAreaChart } from './charts/AlunosAreaChart';
 
 import { Donutchart } from './charts/Doughnut';
 import { ReceitaChart } from './charts/Receita';
@@ -23,221 +25,193 @@ export const Dashboard = () => {
         <AppToolbar />
       )}
     >
-      <Box>
-        <Typography>
-          Olá {user?.nome}
-        </Typography>
-      </Box>
       <Grid container spacing={2}>
-        <Grid item container spacing={2} xs={mdDown ? 12 : 6}>
+        <Grid item container spacing={2} xs={mdDown ? 12 : 4}>
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1)
-              }}
-              container
-            >
-              <Grid item xs={4}>
-                <Grid item sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 3,
-                  borderTopLeftRadius: theme.spacing(1),
-                  borderBottomLeftRadius: theme.spacing(1),
-                }}>
-                  <Avatar sx={{
-                    bgcolor: theme.palette.primary.light
-                  }}>
-                    <Icon fontSize='medium'>
-                      groups_2
-                    </Icon>
-                  </Avatar>
-                </Grid>
-              </Grid>
-              <Grid item xs={8} display='flex'>
-                <Grid>
-                  <Divider orientation='vertical' />
-                </Grid>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
-                  <Typography
+            <Box component={Paper}>
+              <List
+                subheader={
+                  <ListSubheader
+                    component="div"
+                    color='inherit'
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.8rem',
-                      fontWeight: 700
-                    }}>
-                    468
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: lgDown ? '0.7rem' : '1rem',
-                      fontWeight: 300
-                    }}>
-                    Alunos
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1)
-              }}
-              container
-            >
-              <Grid item xs={4}>
-                <Grid item sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 3,
-                  borderTopLeftRadius: theme.spacing(1),
-                  borderBottomLeftRadius: theme.spacing(1),
-                }}>
-                  <Avatar sx={{
-                    bgcolor: theme.palette.secondary.light
-                  }}>
-                    <Icon fontSize='medium'>
-                      school
-                    </Icon>
-                  </Avatar>
-                </Grid>
-              </Grid>
-              <Grid item xs={8} display='flex'>
-                <Grid>
-                  <Divider orientation='vertical' />
-                </Grid>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
-                  <Typography
-                    sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.8rem',
-                      fontWeight: 700
+                      fontSize: lgDown ? '1.3rem' : '1.3rem',
+                      fontWeight: 500
                     }}
                   >
-                    26
-                  </Typography>
-                  <Typography
+                    Alunos
+                  </ListSubheader>
+                }
+              >
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar variant='rounded' sx={{
+                      bgcolor: theme.palette.primary.main,
+                      width: 60,
+                      height: 60
+                    }}>
+                      <Groups2 />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        sx={{
+                          fontSize: lgDown ? '1.3rem' : '1.8rem',
+                          fontWeight: 700,
+                          pl: 2
+                        }}
+                      >
+                        460
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
+          </Grid>
+
+          <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
+            <Box component={Paper}>
+              <List
+                subheader={
+                  <ListSubheader
+                    component="div"
+                    color='inherit'
                     sx={{
-                      fontSize: lgDown ? '0.7rem' : '1rem',
-                      fontWeight: 300
+                      fontSize: lgDown ? '1.3rem' : '1.3rem',
+                      fontWeight: 500
                     }}
                   >
                     Professores
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+                  </ListSubheader>
+                }
+              >
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar variant='rounded' sx={{
+                      bgcolor: theme.palette.secondary.main,
+                      width: 60,
+                      height: 60
+                    }}>
+                      <School />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        sx={{
+                          fontSize: lgDown ? '1.3rem' : '1.8rem',
+                          fontWeight: 700,
+                          pl: 2
+                        }}
+                      >
+                        30
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
           </Grid>
+
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1)
-              }}
-              container
-            >
-              <Grid item xs={4}>
-                <Grid item sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 3,
-                  borderTopLeftRadius: theme.spacing(1),
-                  borderBottomLeftRadius: theme.spacing(1),
-                }}>
-                  <Avatar sx={{
-                    bgcolor: theme.palette.primary.light
-                  }}>
-                    <Icon fontSize='medium'>
-                      supervised_user_circle
-                    </Icon>
-                  </Avatar>
-                </Grid>
-              </Grid>
-              <Grid item xs={8} display='flex'>
-                <Grid>
-                  <Divider orientation='vertical' />
-                </Grid>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)} zeroMinWidth wrap='nowrap'>
-                  <Typography
+            <Box component={Paper}>
+              <List
+                subheader={
+                  <ListSubheader
+                    component="div"
+                    color='inherit'
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.8rem',
-                      fontWeight: 700
-                    }}
-                  >
-                    16
-                  </Typography>
-                  <Typography
-                    noWrap
-                    sx={{
-                      fontSize: lgDown ? '0.7rem' : '1rem',
-                      fontWeight: 300
+                      fontSize: lgDown ? '1.3rem' : '1.3rem',
+                      fontWeight: 500
                     }}
                   >
                     Colaboradores
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+                  </ListSubheader>
+                }
+              >
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar variant='rounded' sx={{
+                      bgcolor: '#f44336',
+                      width: 60,
+                      height: 60
+                    }}>
+                      <SupervisedUserCircle />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        sx={{
+                          fontSize: lgDown ? '1.3rem' : '1.8rem',
+                          fontWeight: 700,
+                          pl: 2
+                        }}
+                      >
+                        20
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
           </Grid>
+
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1)
-              }}
-              container
-            >
-              <Grid item xs={4}>
-                <Grid item sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 3,
-                  borderTopLeftRadius: theme.spacing(1),
-                  borderBottomLeftRadius: theme.spacing(1),
-                }}>
-                  <Avatar sx={{
-                    bgcolor: theme.palette.secondary.light
-                  }}>
-                    <Icon fontSize='medium'>
-                      folder_shared
-                    </Icon>
-                  </Avatar>
-                </Grid>
-              </Grid>
-              <Grid item xs={8} display='flex'>
-                <Grid>
-                  <Divider orientation='vertical' />
-                </Grid>
-                <Grid item container direction='column' justifyContent='center' ml={theme.spacing(3)}>
-                  <Typography
+            <Box component={Paper}>
+              <List
+                subheader={
+                  <ListSubheader
+                    component="div"
+                    color='inherit'
                     sx={{
-                      fontSize: lgDown ? '1.3rem' : '1.8rem',
-                      fontWeight: 700
-                    }}
-                  >
-                    18
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: lgDown ? '0.7rem' : '1rem',
-                      fontWeight: 300
+                      fontSize: lgDown ? '1.3rem' : '1.3rem',
+                      fontWeight: 500
                     }}
                   >
                     Turmas
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+                  </ListSubheader>
+                }
+              >
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar variant='rounded' sx={{
+                      bgcolor: '#57CA22',
+                      width: 60,
+                      height: 60
+                    }}>
+                      <FolderShared />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        sx={{
+                          fontSize: lgDown ? '1.3rem' : '1.8rem',
+                          fontWeight: 700,
+                          pl: 2
+                        }}
+                      >
+                        20
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
           </Grid>
-        </Grid>
-        <Grid item container xs={mdDown ? 12 : 6}>
-          <Grid item container component={Paper}>
 
-          </Grid>
+        </Grid>
+        <Grid item container xs={mdDown ? 12 : 8}>
+          <Box component={Paper} width='100%'>
+            <AlunosAreaChart />
+          </Box>
         </Grid>
 
         <Grid item container spacing={2}>
