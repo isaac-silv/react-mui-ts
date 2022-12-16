@@ -1,6 +1,4 @@
-import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { controllers } from 'chart.js';
-import { W } from 'chart.js/dist/chunks/helpers.core';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import Chart from 'react-apexcharts';
 
 export const AlunosAreaChart = () =>

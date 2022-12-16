@@ -10,8 +10,8 @@ import { ProfessoresCard } from './cards/ProfessoresCard';
 import { TurmasCard } from './cards/TurmasCard';
 import { AlunosAreaChart } from './charts/AlunosAreaChart';
 
-import { Donutchart } from './charts/Doughnut';
-import { ReceitaChart } from './charts/Receita';
+import { DoughnutAreChart } from './charts/DoughnutAreaChart';
+import { ReceitaAreaChart } from './charts/ReceitaAreaChart';
 
 
 export const Dashboard = () => {
@@ -31,6 +31,7 @@ export const Dashboard = () => {
     >
       <Grid container spacing={4}>
         <Grid item container spacing={4} xs={mdDown ? 12 : 8}>
+
           <Grid item xs={smDown ? 12 : mdDown ? 6 : 6}>
             <Box component={Paper}>
               <AlunosCard />
@@ -56,12 +57,13 @@ export const Dashboard = () => {
           </Grid>
 
         </Grid>
+
         <Grid item container xs={mdDown ? 12 : 4}>
           <Box component={Paper} display='flex' flexDirection='column' width='100%' padding={0}>
             <Box padding={4} sx={{fontColor: '#70D242'}}>
               <Typography
                 sx={{
-                  fontSize: lgDown ? '1.3rem' : '1rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                 }}
               >
@@ -71,7 +73,7 @@ export const Dashboard = () => {
                 <Add fontSize='medium' />
                 <Typography
                   sx={{
-                    fontSize: lgDown ? '0.8rem' : '42px',
+                    fontSize: lgDown ? '38px' : '42px',
                     fontWeight: 800,
                   }}
                 >
@@ -101,97 +103,14 @@ export const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid item container spacing={2}>
+        <Grid item container spacing={4}>
+
           <Grid item xs={mdDown ? 12 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1),
-              }}
-              container
-              direction='column'
-            >
-              <Grid sx={{ display: 'flex', padding: theme.spacing(2) }}>
-                <Typography
-                  sx={{
-                    flexGrow: 1,
-                    fontSize: lgDown ? '1.2rem' : '1.3rem',
-                    fontWeight: 400
-                  }}
-                >
-                  Receita
-                </Typography>
-
-                <Avatar
-                  sx={{
-                    flexGrow: 0,
-                    bgcolor: theme.palette.primary.main,
-                    color: '#ffffff'
-                  }}
-                  variant='rounded'
-                >
-                  <Icon>
-                    trending_up
-                  </Icon>
-                </Avatar>
-
-              </Grid>
-              <Divider />
-              <Grid item container sx={{
-                display:'flex',
-                justifyContent:'center',
-                alignItems:'center',
-                padding: theme.spacing(2)
-              }}>
-                <ReceitaChart />
-              </Grid>
-            </Grid>
+            <ReceitaAreaChart />
           </Grid>
 
           <Grid item xs={mdDown ? 12 : 6}>
-            <Grid
-              component={Paper}
-              sx={{
-                borderRadius: theme.spacing(1),
-              }}
-              container
-              direction='column'
-            >
-              <Grid sx={{ display: 'flex', padding: theme.spacing(2) }}>
-                <Typography
-                  sx={{
-                    flexGrow: 1,
-                    fontSize: lgDown ? '1.2rem' : '1.3rem',
-                    fontWeight: 400
-                  }}
-                >
-                  Despesas
-                </Typography>
-
-                <Avatar
-                  sx={{
-                    flexGrow: 0,
-                    bgcolor: theme.palette.primary.main,
-                    color: '#ffffff'
-                  }}
-                  variant='rounded'
-                >
-                  <Icon>
-                    trending_down
-                  </Icon>
-                </Avatar>
-
-              </Grid>
-              <Divider />
-              <Grid item container sx={{
-                display:'flex',
-                justifyContent:'center',
-                alignItems:'center',
-                padding: theme.spacing(2)
-              }}>
-                <Donutchart />
-              </Grid>
-            </Grid>
+            <DoughnutAreChart />
           </Grid>
         </Grid>
       </Grid>
