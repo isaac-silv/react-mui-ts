@@ -1,5 +1,5 @@
-import { TrendingUp } from '@mui/icons-material';
-import { Avatar, Box, Divider, Grid, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { AttachMoney, Construction, CurrencyExchange, EmojiFoodBeverage, Engineering, LocalAtm, TrendingDown, TrendingUp } from '@mui/icons-material';
+import { Avatar, Box, Divider, Grid, Paper, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { controllers } from 'chart.js';
 import { W } from 'chart.js/dist/chunks/helpers.core';
 import Chart from 'react-apexcharts';
@@ -15,7 +15,8 @@ export const DoughnutAreChart = () =>
       component={Paper}
       sx={{
         borderRadius: theme.spacing(1),
-        padding: theme.spacing(4)
+        padding: theme.spacing(4),
+        width: '100%',
       }}
     >
       <Box sx={{ display: 'flex' }}>
@@ -26,7 +27,7 @@ export const DoughnutAreChart = () =>
             fontWeight: 400
           }}
         >
-          Receita
+          Despesas
         </Typography>
 
         <Avatar
@@ -37,78 +38,274 @@ export const DoughnutAreChart = () =>
           }}
           variant='rounded'
         >
-          <TrendingUp />
+          <TrendingDown />
         </Avatar>
 
       </Box>
 
-      <Chart
-        width='100%'
-        height='100%'
-        type="donut"
-        series={[45500.75, 7000, 4000, 3615.33, 2000]}
+      <Divider sx={{mt: theme.spacing(2), mb: theme.spacing(2)}} />
 
-        options={{
-          labels: ['Salários', 'Reformas', 'Recursos', 'Alimentação', 'Outros'],
-          colors:['#673ab7', '#7e57c2', '#9575cd', '#b39ddb', '#d1c4e9'],
+      <Grid container>
+        <Grid xs={smDown ? 12 : 7} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Chart
+            width='100%'
+            type="donut"
+            series={[45500.75, 7000, 4000, 3615.33]}
 
-          plotOptions:{
-            pie:{
-              customScale: 1.5,
-              donut:{
-                labels:{
-                  show: true,
-                  value: {
+            options={{
+              labels: ['Salários', 'Reformas', 'Recursos', 'Alimentação'],
+              colors:['#673ab7', '#7e57c2', '#9575cd', '#b39ddb'],
 
-                    formatter: function (w) {
+              plotOptions:{
+                pie:{
+                  donut:{
+                    labels:{
+                      show: false,
+                      value: {
 
-                      const format = Number(w).toLocaleString('pt-BR', {
-                        style: 'currency', currency: 'BRL'
-                      });
+                        formatter: function (w) {
 
-                      return format;
-                    }
-                  },
-                  total:{
-                    show: true,
-                    showAlways: false,
-                    formatter: function (w) {
-                      const result = w.globals.seriesTotals.reduce((a: number, b: number) => a + b, 0);
-                      const format = result.toLocaleString('pt-BR', {
-                        style: 'currency', currency: 'BRL'
-                      });
-                      return format;
+                          const format = Number(w).toLocaleString('pt-BR', {
+                            style: 'currency', currency: 'BRL'
+                          });
+
+                          return format;
+                        }
+                      },
+                      total:{
+                        show: false,
+                        showAlways: false,
+                        formatter: function (w) {
+                          const result = w.globals.seriesTotals.reduce((a: number, b: number) => a + b, 0);
+                          const format = result.toLocaleString('pt-BR', {
+                            style: 'currency', currency: 'BRL'
+                          });
+                          return format;
+                        }
+                      }
                     }
                   }
                 }
-              }
-            }
-          },
+              },
 
-          legend: {
-            show: true,
-            position: 'bottom'
-          },
+              chart: {
+                sparkline: {
+                  enabled: false
+                }
+              },
 
-          stroke: {
-            colors: ['#673ab7', '#7e57c2', '#9575cd', '#b39ddb', '#d1c4e9']
-          },
+              legend: {
+                show: false,
+                position: 'bottom'
+              },
 
-          dataLabels:{
-            enabled: false,
-          },
+              stroke: {
+                colors: ['#673ab7', '#7e57c2', '#9575cd', '#b39ddb', '#d1c4e9']
+              },
 
-          tooltip: {
-            y: {
-              formatter: function(val) {
-                return val.toLocaleString('pt-BR', {
-                  style: 'currency', currency: 'BRL'
-                });
-              }
-            }
-          },
-        }}
-      />
+              dataLabels:{
+                enabled: false,
+              },
+
+              tooltip: {
+                y: {
+                  formatter: function(val) {
+                    return val.toLocaleString('pt-BR', {
+                      style: 'currency', currency: 'BRL'
+                    });
+                  }
+                }
+              },
+
+              grid: {
+                show: false,
+                padding: {
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                }
+              },
+            }}
+          />
+        </Grid>
+
+        <Grid xs={smDown ? 12 : 5} justifyContent='space-around'>
+          <Grid
+            container={smDown ? true : false}
+            direction={smDown ? 'row' : 'column'}
+            height='100%'
+            display='flex'
+            alignItems='center'>
+
+            <Grid container xs={smDown ? 6 : 12} display='flex' width='100%'  alignItems='center'>
+              <Box display='flex' alignItems='center' justifyContent='center'>
+                <Avatar
+                  variant='circular'
+                  sx={{
+                    bgcolor: '#673ab7',
+                    color: '#fff',
+                    width: 30,
+                    height: 30
+                  }}>
+                  <LocalAtm sx={{width: 20, height: 20,}} />
+                </Avatar>
+              </Box>
+              <Box pl={theme.spacing(1)}>
+                <Typography
+                  sx={{
+                    fontWeight: 300
+                  }}
+                >
+                  Salários
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 800,
+                    mt: theme.spacing(-1),
+                  }}
+                >
+                  R$ 45.500,75
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
+              <Box display='flex' alignItems='center' justifyContent='center'>
+                <Avatar
+                  variant='circular'
+                  sx={{
+                    bgcolor: '#7e57c2',
+                    color: '#fff',
+                    width: 30,
+                    height: 30
+                  }}>
+                  <Engineering sx={{width: 20, height: 20,}} />
+                </Avatar>
+              </Box>
+              <Box pl={theme.spacing(1)}>
+                <Typography
+                  sx={{
+                    fontWeight: 300
+                  }}
+                >
+                  Reformas
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 800,
+                    mt: theme.spacing(-1),
+                  }}
+                >
+                  R$ 7.000,00
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
+              <Box display='flex' alignItems='center' justifyContent='center'>
+                <Avatar
+                  variant='circular'
+                  sx={{
+                    bgcolor: '#9575cd',
+                    color: '#fff',
+                    width: 30,
+                    height: 30
+                  }}>
+                  <Construction sx={{width: 20, height: 20,}} />
+                </Avatar>
+              </Box>
+              <Box pl={theme.spacing(1)}>
+                <Typography
+                  sx={{
+                    fontWeight: 300
+                  }}
+                >
+                  Recursos
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 800,
+                    mt: theme.spacing(-1),
+                  }}
+                >
+                  R$ 4.000,00
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
+              <Box display='flex' alignItems='center' justifyContent='center'>
+                <Avatar
+                  variant='circular'
+                  sx={{
+                    bgcolor: '#b39ddb',
+                    color: '#fff',
+                    width: 30,
+                    height: 30
+                  }}>
+                  <EmojiFoodBeverage sx={{width: 20, height: 20,}} />
+                </Avatar>
+              </Box>
+              <Box pl={theme.spacing(1)}>
+                <Typography
+                  sx={{
+                    fontWeight: 300
+                  }}
+                >
+                  Alimentação
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 800,
+                    mt: theme.spacing(-1),
+                  }}
+                >
+                  R$ 3.615,33
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
+              <Box display='flex' alignItems='center' justifyContent='center'>
+                <Avatar
+                  variant='circular'
+                  sx={{
+                    bgcolor: '#F44336',
+                    color: '#fff',
+                    width: 30,
+                    height: 30
+                  }}>
+                  <AttachMoney sx={{width: 20, height: 20,}} />
+                </Avatar>
+              </Box>
+              <Box pl={theme.spacing(1)}>
+                <Typography
+                  sx={{
+                    fontWeight: 300
+                  }}
+                >
+                  Total
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 800,
+                    mt: theme.spacing(-1),
+                  }}
+                >
+                  R$ 60.116,08
+                </Typography>
+              </Box>
+            </Grid>
+
+          </Grid>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

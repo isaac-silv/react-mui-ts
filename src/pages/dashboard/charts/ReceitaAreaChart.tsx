@@ -14,7 +14,8 @@ export const ReceitaAreaChart = () =>
       component={Paper}
       sx={{
         borderRadius: theme.spacing(1),
-        padding: theme.spacing(4)
+        padding: theme.spacing(4),
+        width: '100%'
       }}
     >
       <Box sx={{ display: 'flex' }}>

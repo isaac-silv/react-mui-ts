@@ -105,11 +105,11 @@ export const Dashboard = () => {
 
         <Grid item container spacing={4}>
 
-          <Grid item xs={mdDown ? 12 : 6}>
+          <Grid item container xs={mdDown ? 12 : 6}>
             <ReceitaAreaChart />
           </Grid>
 
-          <Grid item xs={mdDown ? 12 : 6}>
+          <Grid item container xs={mdDown ? 12 : 6}>
             <DoughnutAreChart />
           </Grid>
         </Grid>
