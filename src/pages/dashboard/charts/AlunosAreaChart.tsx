@@ -1,9 +1,11 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import Chart from 'react-apexcharts';
+import { useAppThemeContext } from '../../../shared/contexts';
 
 export const AlunosAreaChart = () =>
 {
   const theme = useTheme();
+  const { themeName } = useAppThemeContext();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -49,6 +51,7 @@ export const AlunosAreaChart = () =>
 
           tooltip: {
             enabled: true,
+            theme: themeName === 'dark' ? 'dark' : 'light'
           },
 
           xaxis: {

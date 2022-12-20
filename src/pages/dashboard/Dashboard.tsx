@@ -10,7 +10,7 @@ import { ProfessoresCard } from './cards/ProfessoresCard';
 import { TurmasCard } from './cards/TurmasCard';
 import { AlunosAreaChart } from './charts/AlunosAreaChart';
 
-import { DoughnutAreChart } from './charts/DoughnutAreaChart';
+import { DespesasDonutChart } from './charts/DespesasDonutChart';
 import { ReceitaAreaChart } from './charts/ReceitaAreaChart';
 
 
@@ -110,7 +110,7 @@ export const Dashboard = () => {
           </Grid>
 
           <Grid item container xs={mdDown ? 12 : 6}>
-            <DoughnutAreChart />
+            <DespesasDonutChart />
           </Grid>
         </Grid>
       </Grid>

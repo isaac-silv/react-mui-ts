@@ -1,10 +1,12 @@
 import { AttachMoney, CurrencyExchange, TrendingUp } from '@mui/icons-material';
-import { Avatar, Box, Divider, Grid, Paper, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Box, Divider, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Chart from 'react-apexcharts';
+import { useAppThemeContext } from '../../../shared/contexts';
 
 export const ReceitaAreaChart = () =>
 {
   const theme = useTheme();
+  const { themeName } = useAppThemeContext();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -81,6 +83,7 @@ export const ReceitaAreaChart = () =>
 
             tooltip: {
               enabled: true,
+              theme: themeName === 'dark' ? 'dark' : 'light',
               y: {
                 formatter: function(val) {
                   return val.toLocaleString('pt-BR', {

@@ -1,10 +1,8 @@
-import { AttachMoney, Construction, CurrencyExchange, EmojiFoodBeverage, Engineering, LocalAtm, TrendingDown, TrendingUp } from '@mui/icons-material';
-import { Avatar, Box, Divider, Grid, Paper, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { controllers } from 'chart.js';
-import { W } from 'chart.js/dist/chunks/helpers.core';
+import { AttachMoney, Construction, EmojiFoodBeverage, Engineering, LocalAtm, TrendingDown } from '@mui/icons-material';
+import { Avatar, Box, Divider, Grid, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Chart from 'react-apexcharts';
 
-export const DoughnutAreChart = () =>
+export const DespesasDonutChart = () =>
 {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
