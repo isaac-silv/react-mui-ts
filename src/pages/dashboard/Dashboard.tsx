@@ -60,7 +60,7 @@ export const Dashboard = () => {
 
         <Grid item container xs={mdDown ? 12 : 4}>
           <Box component={Paper} display='flex' flexDirection='column' width='100%' padding={0}>
-            <Box padding={4} sx={{fontColor: '#70D242'}}>
+            <Box padding={theme.spacing(4)} pb={theme.spacing(0)} sx={{fontColor: '#70D242'}}>
               <Typography
                 sx={{
                   fontSize: '1rem',

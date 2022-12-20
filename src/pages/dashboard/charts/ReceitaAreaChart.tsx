@@ -116,13 +116,22 @@ export const ReceitaAreaChart = () =>
 
         <Box display='flex' width='100%' alignItems='center' justifyContent='center'>
           <Box display='flex' alignItems='center' justifyContent='center'>
-            <Avatar variant='circular' sx={{bgcolor: '#57CA22', color: '#fff'}}>
+            <Avatar
+              variant='circular'
+              sx={{
+                bgcolor: '#57CA22',
+                color: '#fff',
+                width: smDown ? 30 : 45,
+                height: smDown ? 30 : 45
+              }}
+            >
               <AttachMoney />
             </Avatar>
           </Box>
           <Box pl={theme.spacing(1)}>
             <Typography
               sx={{
+                fontSize: smDown ? '15px' : undefined,
                 fontWeight: 300
               }}
             >
@@ -130,7 +139,7 @@ export const ReceitaAreaChart = () =>
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: smDown ? '13px' : '18px',
                 fontWeight: 800,
                 mt: theme.spacing(-1),
               }}
@@ -146,13 +155,22 @@ export const ReceitaAreaChart = () =>
 
         <Box display='flex' width='100%' alignItems='center' justifyContent='center'>
           <Box display='flex' alignItems='center' justifyContent='center'>
-            <Avatar variant='circular' sx={{bgcolor: theme.palette.secondary.main, color: '#fff'}}>
+            <Avatar
+              variant='circular'
+              sx={{
+                bgcolor: theme.palette.secondary.main,
+                color: '#fff',
+                width: smDown ? 30 : 45,
+                height: smDown ? 30 : 45
+              }}
+            >
               <CurrencyExchange />
             </Avatar>
           </Box>
           <Box pl={theme.spacing(1)}>
             <Typography
               sx={{
+                fontSize: smDown ? '15px' : undefined,
                 fontWeight: 300
               }}
             >
@@ -160,7 +178,7 @@ export const ReceitaAreaChart = () =>
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: smDown ? '13px' : '18px',
                 fontWeight: 800,
                 mt: theme.spacing(-1)
               }}

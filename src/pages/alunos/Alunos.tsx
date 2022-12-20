@@ -14,7 +14,7 @@ export const Alunos = () => {
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ page, setPage ] = useState(0);
   const [ alunosPerPage, setAlunosPerPage ] = useState(5);
-  const [ areaLabel, setAreaLabel ] = useState<'primeira' | 'última'>();
+  const [ areaLabel, setAreaLabel ] = useState<'primeira página' | 'última página' | 'página anterior' | 'próxima página'>();
 
   const navigate = useNavigate();
 
@@ -143,10 +143,6 @@ export const Alunos = () => {
                 labelDisplayedRows={
                   ({ from, to, count }) => {return '' + from + '-' + to + ' de ' + count;}
                 }
-                getItemAriaLabel={(type) => {
-                  if (type === 'first') setAreaLabel('primeira')
-                  if (type === 'last') setAreaLabel('última')
-                }}
               />
             </Box>
           </TableContainer>

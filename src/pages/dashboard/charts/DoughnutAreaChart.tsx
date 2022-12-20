@@ -8,6 +8,7 @@ export const DoughnutAreChart = () =>
 {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return(
@@ -43,7 +44,7 @@ export const DoughnutAreChart = () =>
 
       </Box>
 
-      <Divider sx={{mt: theme.spacing(2), mb: theme.spacing(2)}} />
+      <Divider sx={{mt: theme.spacing(2), mb: theme.spacing(4)}} />
 
       <Grid container>
         <Grid xs={smDown ? 12 : 7} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -130,180 +131,173 @@ export const DoughnutAreChart = () =>
           />
         </Grid>
 
-        <Grid xs={smDown ? 12 : 5} justifyContent='space-around'>
-          <Grid
-            container={smDown ? true : false}
-            direction={smDown ? 'row' : 'column'}
-            height='100%'
-            display='flex'
-            alignItems='center'>
+        <Grid xs={smDown ? 12 : 5} container alignItems='center' >
 
-            <Grid container xs={smDown ? 6 : 12} display='flex' width='100%'  alignItems='center'>
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <Avatar
-                  variant='circular'
-                  sx={{
-                    bgcolor: '#673ab7',
-                    color: '#fff',
-                    width: 30,
-                    height: 30
-                  }}>
-                  <LocalAtm sx={{width: 20, height: 20,}} />
-                </Avatar>
-              </Box>
-              <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
-                  Salários
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
-                  R$ 45.500,75
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <Avatar
-                  variant='circular'
-                  sx={{
-                    bgcolor: '#7e57c2',
-                    color: '#fff',
-                    width: 30,
-                    height: 30
-                  }}>
-                  <Engineering sx={{width: 20, height: 20,}} />
-                </Avatar>
-              </Box>
-              <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
-                  Reformas
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
-                  R$ 7.000,00
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <Avatar
-                  variant='circular'
-                  sx={{
-                    bgcolor: '#9575cd',
-                    color: '#fff',
-                    width: 30,
-                    height: 30
-                  }}>
-                  <Construction sx={{width: 20, height: 20,}} />
-                </Avatar>
-              </Box>
-              <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
-                  Recursos
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
-                  R$ 4.000,00
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <Avatar
-                  variant='circular'
-                  sx={{
-                    bgcolor: '#b39ddb',
-                    color: '#fff',
-                    width: 30,
-                    height: 30
-                  }}>
-                  <EmojiFoodBeverage sx={{width: 20, height: 20,}} />
-                </Avatar>
-              </Box>
-              <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
-                  Alimentação
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
-                  R$ 3.615,33
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid xs={smDown ? 6 : 12} display='flex' width='100%' alignItems='center'>
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <Avatar
-                  variant='circular'
-                  sx={{
-                    bgcolor: '#F44336',
-                    color: '#fff',
-                    width: 30,
-                    height: 30
-                  }}>
-                  <AttachMoney sx={{width: 20, height: 20,}} />
-                </Avatar>
-              </Box>
-              <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
-                  Total
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
-                  R$ 60.116,08
-                </Typography>
-              </Box>
-            </Grid>
-
+          <Grid xs={smDown ? 6 : 12} display='flex' alignItems='center'>
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <Avatar
+                variant='circular'
+                sx={{
+                  bgcolor: '#673ab7',
+                  color: '#fff',
+                  width: 30,
+                  height: 30
+                }}>
+                <LocalAtm sx={{width: 20, height: 20,}} />
+              </Avatar>
+            </Box>
+            <Box pl={theme.spacing(1)}>
+              <Typography
+                sx={{
+                  fontWeight: 300
+                }}
+              >
+                Salários
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: smDown ? '12px' : mdDown ? '17px' : lgDown ? '14px' : '17px',
+                  fontWeight: 800,
+                  mt: theme.spacing(-1),
+                }}
+              >
+                R$ 45.500,75
+              </Typography>
+            </Box>
           </Grid>
+
+          <Grid xs={smDown ? 6 : 12} display='flex' alignItems='center'>
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <Avatar
+                variant='circular'
+                sx={{
+                  bgcolor: '#7e57c2',
+                  color: '#fff',
+                  width: 30,
+                  height: 30
+                }}>
+                <Engineering sx={{width: 20, height: 20,}} />
+              </Avatar>
+            </Box>
+            <Box pl={theme.spacing(1)}>
+              <Typography
+                sx={{
+                  fontWeight: 300
+                }}
+              >
+                Reformas
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: smDown ? '12px' : mdDown ? '17px' : lgDown ? '14px' : '17px',
+                  fontWeight: 800,
+                  mt: theme.spacing(-1),
+                }}
+              >
+                R$ 7.000,00
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid xs={smDown ? 6 : 12} display='flex' alignItems='center'>
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <Avatar
+                variant='circular'
+                sx={{
+                  bgcolor: '#9575cd',
+                  color: '#fff',
+                  width: 30,
+                  height: 30
+                }}>
+                <Construction sx={{width: 20, height: 20,}} />
+              </Avatar>
+            </Box>
+            <Box pl={theme.spacing(1)}>
+              <Typography
+                sx={{
+                  fontWeight: 300
+                }}
+              >
+                Recursos
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: smDown ? '12px' : mdDown ? '17px' : lgDown ? '14px' : '17px',
+                  fontWeight: 800,
+                  mt: theme.spacing(-1),
+                }}
+              >
+                R$ 4.000,00
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid xs={smDown ? 6 : 12} display='flex' alignItems='center'>
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <Avatar
+                variant='circular'
+                sx={{
+                  bgcolor: '#b39ddb',
+                  color: '#fff',
+                  width: 30,
+                  height: 30
+                }}>
+                <EmojiFoodBeverage sx={{width: 20, height: 20,}} />
+              </Avatar>
+            </Box>
+            <Box pl={theme.spacing(1)}>
+              <Typography
+                sx={{
+                  fontWeight: 300
+                }}
+              >
+                Alimentação
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: smDown ? '12px' : mdDown ? '17px' : lgDown ? '14px' : '17px',
+                  fontWeight: 800,
+                  mt: theme.spacing(-1),
+                }}
+              >
+                R$ 3.615,33
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid xs={smDown ? 6 : 12} display='flex' alignItems='center'>
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <Avatar
+                variant='circular'
+                sx={{
+                  bgcolor: '#F44336',
+                  color: '#fff',
+                  width: 30,
+                  height: 30
+                }}>
+                <AttachMoney sx={{width: 20, height: 20,}} />
+              </Avatar>
+            </Box>
+            <Box pl={theme.spacing(1)}>
+              <Typography
+                sx={{
+                  fontWeight: 300
+                }}
+              >
+                Total
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: smDown ? '12px' : mdDown ? '17px' : lgDown ? '14px' : '17px',
+                  fontWeight: 800,
+                  mt: theme.spacing(-1),
+                }}
+              >
+                R$ 60.116,08
+              </Typography>
+            </Box>
+          </Grid>
+
         </Grid>
       </Grid>
     </Box>

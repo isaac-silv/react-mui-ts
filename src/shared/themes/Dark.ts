@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material';
-import { amber, cyan, deepPurple } from '@mui/material/colors';
+import { amber, deepPurple } from '@mui/material/colors';
+import { ptBR } from '@mui/material/locale';
 
 export const DarkTheme = createTheme({
   palette: {
@@ -82,4 +83,6 @@ export const DarkTheme = createTheme({
       }
     }
   },
-});
+},
+ptBR,
+);

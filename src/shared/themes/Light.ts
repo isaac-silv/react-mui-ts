@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material';
 import { amber, deepPurple } from '@mui/material/colors';
+import { ptBR } from '@mui/material/locale';
 
 export const LightTheme = createTheme({
   palette: {
@@ -62,4 +63,6 @@ export const LightTheme = createTheme({
       }
     }
   },
-});
+},
+ptBR,
+);
