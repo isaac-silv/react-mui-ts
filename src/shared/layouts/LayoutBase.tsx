@@ -1,7 +1,7 @@
-import { Container, Icon, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
 import { ReactNode } from 'react';
-import { useDrawerContext } from '../contexts';
+
 
 interface ILayoutBaseProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface ILayoutBaseProps {
 export const LayoutBase: React.FC<ILayoutBaseProps> = ({ children, AppToolbar }) => {
   const theme = useTheme();
 
-  const { toggleDrawerOpen } = useDrawerContext();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Container maxWidth='xl' sx={{
@@ -21,7 +21,7 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({ children, AppToolbar })
         <Box>
           {AppToolbar}
         </Box>
-        <Box flex={1} overflow='auto' paddingX={theme.spacing(3)} pt={theme.spacing(4)} pb={theme.spacing(4)}>
+        <Box flex={1} overflow='auto' paddingX={theme.spacing(smDown ? 2 : 3)} pt={theme.spacing(4)} pb={theme.spacing(4)}>
           {children}
         </Box>
       </Box>

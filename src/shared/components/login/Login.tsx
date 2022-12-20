@@ -16,8 +16,8 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
   const { isAuthenticated, login } = useAuthContext();
   const { showSnackBar } = useSnackBar();
 
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [ email, setEmail ] = useState('teste@email.com');
+  const [ password, setPassword ] = useState('123456');
   const [ emailError, setEmailError ] = useState(false);
   const [ passwordError, setPasswordError ] = useState(false);
 
@@ -111,6 +111,7 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
             justifyContent='center'
           >
             <Button
+              disabled={isLoading}
               variant='contained'
               onClick={handleSubmit}
             >

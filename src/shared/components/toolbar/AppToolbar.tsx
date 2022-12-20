@@ -52,7 +52,7 @@ export const AppToolbar: React.FC = () => {
 
   return (
     <Box>
-      <Toolbar disableGutters sx={{paddingX: theme.spacing(3)}}>
+      <Toolbar disableGutters sx={{paddingX: theme.spacing(smDown ? 2 : 3)}}>
 
         <Box sx={{ mr: 1 }}>
           <IconButton
@@ -74,7 +74,7 @@ export const AppToolbar: React.FC = () => {
               p: '2px 4px',
               display: 'flex',
               alignItems: 'center',
-              width: smDown ? 200 : 300,
+              width: smDown ? 180 : 300,
               height: 40,
               paddingX: 0
             }}

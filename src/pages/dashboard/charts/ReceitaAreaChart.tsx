@@ -7,8 +7,8 @@ export const ReceitaAreaChart = () =>
 {
   const theme = useTheme();
   const { themeName } = useAppThemeContext();
+
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return(
@@ -16,7 +16,7 @@ export const ReceitaAreaChart = () =>
       component={Paper}
       sx={{
         borderRadius: theme.spacing(1),
-        padding: theme.spacing(4),
+        padding: theme.spacing(smDown ? 2 : 4),
         width: '100%'
       }}
     >
@@ -113,7 +113,8 @@ export const ReceitaAreaChart = () =>
       <Box
         pt={theme.spacing(4)}
         display='flex'
-        alignItems='center'
+
+        alignItems='baseline'
         justifyContent='space-around'
       >
 
@@ -134,7 +135,7 @@ export const ReceitaAreaChart = () =>
           <Box pl={theme.spacing(1)}>
             <Typography
               sx={{
-                fontSize: smDown ? '15px' : undefined,
+                fontSize: smDown ? '14px' : undefined,
                 fontWeight: 300
               }}
             >
@@ -142,7 +143,7 @@ export const ReceitaAreaChart = () =>
             </Typography>
             <Typography
               sx={{
-                fontSize: smDown ? '13px' : '18px',
+                fontSize: smDown ? '12px' : '18px',
                 fontWeight: 800,
                 mt: theme.spacing(-1),
               }}
@@ -150,10 +151,6 @@ export const ReceitaAreaChart = () =>
               R$ 1.035.000
             </Typography>
           </Box>
-        </Box>
-
-        <Box>
-          <Divider orientation='vertical' flexItem/>
         </Box>
 
         <Box display='flex' width='100%' alignItems='center' justifyContent='center'>
@@ -173,7 +170,7 @@ export const ReceitaAreaChart = () =>
           <Box pl={theme.spacing(1)}>
             <Typography
               sx={{
-                fontSize: smDown ? '15px' : undefined,
+                fontSize: smDown ? '14px' : undefined,
                 fontWeight: 300
               }}
             >
@@ -181,7 +178,7 @@ export const ReceitaAreaChart = () =>
             </Typography>
             <Typography
               sx={{
-                fontSize: smDown ? '13px' : '18px',
+                fontSize: smDown ? '12px' : '18px',
                 fontWeight: 800,
                 mt: theme.spacing(-1)
               }}
