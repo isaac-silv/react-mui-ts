@@ -1,5 +1,7 @@
 import {
   Avatar,
+  Button,
+  Card,
   Divider,
   Drawer,
   Icon,
@@ -7,6 +9,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Paper,
   Typography,
   useMediaQuery,
   useTheme } from '@mui/material';
@@ -14,6 +17,7 @@ import { Box } from '@mui/system';
 import React, { ReactNode, useState } from 'react';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useDrawerContext, useAppThemeContext } from '../../contexts';
+import { GitHub, LinkedIn } from '@mui/icons-material';
 
 interface IAppThemeProviderProps {
   children: ReactNode
@@ -79,9 +83,10 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
             display='flex'
             alignItems='center'
             justifyContent='center'
+            pb={theme.spacing(2)}
           >
-            <Typography variant='h4'>
-              <strong>Logo</strong>
+            <Typography variant='h4' sx={{fontWeight: 500}}>
+              SCHOOL
             </Typography>
           </Box>
 
@@ -103,15 +108,49 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
             </List>
           </Box>
 
-          <Box>
-            <List component='nav'>
-              <ListItemButton onClick={toggleTheme}>
-                <ListItemIcon>
-                  <Icon>dark_mode</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Alterar tema" />
-              </ListItemButton>
-            </List>
+          <Box
+            component={Paper}
+            bgcolor={theme.palette.primary.dark}
+            color='#fff'
+          >
+            <Box display='flex'  p={theme.spacing(2)}>
+              <Avatar variant='rounded' src={'https://avatars.githubusercontent.com/u/99730793?v=4'}>
+
+              </Avatar>
+              <Box ml={theme.spacing(2)}>
+                <Typography sx={{fontSize: '17px', fontWeight: 600}}>
+                  Isaac Silva
+                </Typography>
+                <Typography sx={{fontSize: '12px', fontWeight: 300}}>
+                  Desenvolvedor FullStack
+                </Typography>
+              </Box>
+            </Box>
+            <Divider />
+            <Box
+              display='flex'
+              justifyContent='center'
+              bgcolor={theme.palette.primary.main}
+              p={theme.spacing(2)}
+              gap={theme.spacing(2)}
+            >
+              <Button
+                size='small'
+                variant='contained'
+                startIcon={<GitHub />}
+                color='success'
+              >
+                Github
+              </Button>
+              <Button
+                size='small'
+                variant='contained'
+                startIcon={<LinkedIn />}
+                color='info'
+              >
+                LinkedIn
+              </Button>
+            </Box>
           </Box>
 
         </Box>
