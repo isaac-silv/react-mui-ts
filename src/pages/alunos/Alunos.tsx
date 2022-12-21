@@ -120,7 +120,7 @@ export const Alunos = () => {
                       {alunos.peso}
                     </TableCell>
                     <TableCell align='right'>
-                      <IconButton onClick={() => navigate(`/aluno/${alunos.id}`)}>
+                      <IconButton onClick={() => navigate(`/alunos/${alunos.id}`)}>
                         <Icon>
                           manage_accounts
                         </Icon>

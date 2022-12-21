@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Dashboard, Alunos, AlunoPage } from '../pages';
+import { Colaboradores } from '../pages/colaboradores/Colaboradores';
+import { Professores } from '../pages/professores/Professores';
+import { Turmas } from '../pages/turmas/Turmas';
 import { useDrawerContext } from '../shared/contexts';
 
 export const AppRoutes = () => {
@@ -17,6 +20,21 @@ export const AppRoutes = () => {
         label: 'Alunos',
         path: '/alunos',
         icon: 'perm_contact_calendar',
+      },
+      {
+        label: 'Professores',
+        path: '/professores',
+        icon: 'school',
+      },
+      {
+        label: 'Colaboradores',
+        path: '/colaboradores',
+        icon: 'supervised_user_circle',
+      },
+      {
+        label: 'Turmas',
+        path: '/turmas',
+        icon: 'folder_shared',
       }
     ]);
   }, []);
@@ -32,8 +50,20 @@ export const AppRoutes = () => {
         element={<Alunos />}
       />
       <Route
-        path="/aluno/:params"
+        path="/alunos/:params"
         element={<AlunoPage />}
+      />
+      <Route
+        path="/professores"
+        element={<Professores />}
+      />
+      <Route
+        path="/colaboradores"
+        element={<Colaboradores />}
+      />
+      <Route
+        path="/turmas"
+        element={<Turmas />}
       />
 
       <Route

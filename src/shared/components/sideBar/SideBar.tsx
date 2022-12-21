@@ -1,7 +1,6 @@
 import {
   Avatar,
   Button,
-  Card,
   Divider,
   Drawer,
   Icon,
@@ -14,7 +13,7 @@ import {
   useMediaQuery,
   useTheme } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useDrawerContext, useAppThemeContext } from '../../contexts';
 import { GitHub, LinkedIn } from '@mui/icons-material';
@@ -110,7 +109,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
 
           <Box
             component={Paper}
-            bgcolor={theme.palette.primary.dark}
+            bgcolor={theme.palette.primary.main}
             color='#fff'
           >
             <Box display='flex'  p={theme.spacing(2)}>
@@ -130,7 +129,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
             <Box
               display='flex'
               justifyContent='center'
-              bgcolor={theme.palette.primary.main}
+              bgcolor={theme.palette.primary.light}
               p={theme.spacing(2)}
               gap={theme.spacing(2)}
             >
@@ -139,6 +138,7 @@ export const SideBar: React.FC<IAppThemeProviderProps> = ({ children }) => {
                 variant='contained'
                 startIcon={<GitHub />}
                 color='success'
+                href='https://github.com/isaac-silv'
               >
                 Github
               </Button>

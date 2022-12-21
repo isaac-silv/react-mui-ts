@@ -11,13 +11,14 @@ import {
   Paper,
   InputBase,
   useMediaQuery,
+  Divider,
 } from '@mui/material';
 
 
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppThemeContext, useAuthContext, useDrawerContext } from '../../contexts';
 import { useTheme } from '@mui/material';
-import { AlunoService } from '../../services/api/aluno/AlunoService';
+import { Logout, Settings } from '@mui/icons-material';
 
 
 export const AppToolbar: React.FC = () => {
@@ -29,7 +30,7 @@ export const AppToolbar: React.FC = () => {
 
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const { logout } = useAuthContext();
+  const { user, logout } = useAuthContext();
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [ searchAnchor, setSearchAnchor ] = useState<null | HTMLElement>(null);
@@ -142,13 +143,16 @@ export const AppToolbar: React.FC = () => {
                 backgroundColor: 'transparent'
               }
             }}>
-            <Avatar sx={{
-              height: theme.spacing(5),
-              width: theme.spacing(5)}} />
+            <Avatar
+              src='https://www.svgrepo.com/show/81103/avatar.svg'
+              sx={{
+                height: theme.spacing(5),
+                width: theme.spacing(5)
+              }}
+            />
           </IconButton>
           <Menu
             sx={{ mt: '45px' }}
-            id="menu-appbar"
             anchorEl={anchorElUser}
             anchorOrigin={{
               vertical: 'top',
@@ -162,11 +166,47 @@ export const AppToolbar: React.FC = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">Perfil</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: theme.spacing(2),
+                pl: theme.spacing(8),
+                pr: theme.spacing(8),
+                gap: theme.spacing(1)
+              }}
+            >
+              <Avatar
+                src='https://www.svgrepo.com/show/81103/avatar.svg'
+                sx={{
+                  width: 60,
+                  height: 60
+                }}
+              />
+              <Typography textAlign="center"  sx={{fontWeight: 700}}>{user?.nome}</Typography>
+            </Box>
+
+            <Divider />
+
+            <MenuItem onClick={handleCloseUserMenu} sx={{gap: theme.spacing(1)}}>
+              <Settings
+                sx={{
+                  width: 18,
+                  height: 18
+                }}
+              />
+              <Typography textAlign="center">Configurações</Typography>
             </MenuItem>
 
-            <MenuItem onClick={logout}>
+            <MenuItem onClick={logout}  sx={{gap: theme.spacing(1)}}>
+              <Logout
+                sx={{
+                  width: 18,
+                  height: 18
+                }}
+              />
               <Typography textAlign="center">Sair</Typography>
             </MenuItem>
 
