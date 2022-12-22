@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Dashboard, Alunos, AlunoPage } from '../pages';
-import { Colaboradores } from '../pages/colaboradores/Colaboradores';
-import { Professores } from '../pages/professores/Professores';
-import { Turmas } from '../pages/turmas/Turmas';
 import { useDrawerContext } from '../shared/contexts';
+
+import { Dashboard, Alunos, AlunoPage, Professores, Colaboradores, Turmas } from '../pages';
 
 export const AppRoutes = () => {
   const { setDrawerOptions } = useDrawerContext();

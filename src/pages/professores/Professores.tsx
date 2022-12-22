@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import { AppToolbar } from '../../shared/components';
 import { LayoutBase } from '../../shared/layouts';
 
@@ -9,7 +10,9 @@ export const Professores = () => {
         <AppToolbar />
       )}
     >
-      Em breve...
+      <Typography variant='h3'>
+        Em breve...
+      </Typography>
     </LayoutBase>
   );
 };
