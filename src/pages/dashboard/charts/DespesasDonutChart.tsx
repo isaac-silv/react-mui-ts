@@ -19,15 +19,14 @@ export const DespesasDonutChart = () =>
         width: '100%',
       }}
     >
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography
+          variant='body1'
           sx={{
             flexGrow: 1,
-            fontSize: lgDown ? '1.2rem' : '1.3rem',
-            fontWeight: 400
           }}
         >
-          Despesas
+          DESPESAS
         </Typography>
 
         <Avatar
@@ -132,36 +131,26 @@ export const DespesasDonutChart = () =>
 
         <Grid xs={smDown ? 12 : 5} container>
 
-          <Box display='flex' flexDirection='column' justifyContent='center' alignItems='flex-start' gap={theme.spacing(1)}>
+          <Box width='100%' display='flex' flexDirection='column' justifyContent='center' alignItems='flex-start' gap={theme.spacing(2)}>
 
-            <Box display='flex' alignItems='center'>
+            <Box width='100%' display='flex' alignItems='center'>
               <Box display='flex' alignItems='center' justifyContent='center'>
                 <Avatar
                   variant='circular'
                   sx={{
                     bgcolor: '#673ab7',
                     color: '#fff',
-                    width: 30,
-                    height: 30
+                    width: 40,
+                    height: 40
                   }}>
                   <LocalAtm sx={{width: 20, height: 20,}} />
                 </Avatar>
               </Box>
               <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
+                <Typography variant='caption'>
                   Salários
                 </Typography>
-                <Typography
-                  sx={{
-                    fontSize: mdDown ? '12px' : lgDown ? '14px' : '17px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
+                <Typography variant={lgDown ? 'h5' : 'h4'}>
                   R$ 45.500,75
                 </Typography>
               </Box>
@@ -174,27 +163,17 @@ export const DespesasDonutChart = () =>
                   sx={{
                     bgcolor: '#7e57c2',
                     color: '#fff',
-                    width: 30,
-                    height: 30
+                    width: 40,
+                    height: 40
                   }}>
                   <Engineering sx={{width: 20, height: 20,}} />
                 </Avatar>
               </Box>
               <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
+                <Typography variant='caption'>
                   Reformas
                 </Typography>
-                <Typography
-                  sx={{
-                    fontSize: mdDown ? '12px' : lgDown ? '14px' : '17px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
+                <Typography variant={lgDown ? 'h5' : 'h4'}>
                   R$ 7.000,00
                 </Typography>
               </Box>
@@ -207,27 +186,17 @@ export const DespesasDonutChart = () =>
                   sx={{
                     bgcolor: '#9575cd',
                     color: '#fff',
-                    width: 30,
-                    height: 30
+                    width: 40,
+                    height: 40
                   }}>
                   <Construction sx={{width: 20, height: 20,}} />
                 </Avatar>
               </Box>
               <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
+                <Typography variant='caption'>
                   Recursos
                 </Typography>
-                <Typography
-                  sx={{
-                    fontSize: mdDown ? '12px' : lgDown ? '14px' : '17px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
+                <Typography variant={lgDown ? 'h5' : 'h4'}>
                   R$ 4.000,00
                 </Typography>
               </Box>
@@ -240,27 +209,17 @@ export const DespesasDonutChart = () =>
                   sx={{
                     bgcolor: '#b39ddb',
                     color: '#fff',
-                    width: 30,
-                    height: 30
+                    width: 40,
+                    height: 40
                   }}>
                   <EmojiFoodBeverage sx={{width: 20, height: 20,}} />
                 </Avatar>
               </Box>
               <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
+                <Typography variant='caption'>
                   Alimentação
                 </Typography>
-                <Typography
-                  sx={{
-                    fontSize: mdDown ? '12px' : lgDown ? '14px' : '17px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
+                <Typography variant={lgDown ? 'h5' : 'h4'}>
                   R$ 3.615,33
                 </Typography>
               </Box>
@@ -273,27 +232,17 @@ export const DespesasDonutChart = () =>
                   sx={{
                     bgcolor: '#F44336',
                     color: '#fff',
-                    width: 30,
-                    height: 30
+                    width: 40,
+                    height: 40
                   }}>
                   <AttachMoney sx={{width: 20, height: 20,}} />
                 </Avatar>
               </Box>
               <Box pl={theme.spacing(1)}>
-                <Typography
-                  sx={{
-                    fontWeight: 300
-                  }}
-                >
+                <Typography variant='caption'>
                   Total
                 </Typography>
-                <Typography
-                  sx={{
-                    fontSize: mdDown ? '12px' : lgDown ? '14px' : '17px',
-                    fontWeight: 800,
-                    mt: theme.spacing(-1),
-                  }}
-                >
+                <Typography variant={lgDown ? 'h5' : 'h4'}>
                   R$ 60.116,08
                 </Typography>
               </Box>

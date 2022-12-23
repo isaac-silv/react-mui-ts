@@ -17,11 +17,11 @@ export const ProfessoresCard = () => {
       }}>
       <Box display='flex'>
         <Box sx={{flexGrow: 1}}>
-          <Typography>
+          <Typography variant='body1'>
             PROFESSORES
           </Typography>
 
-          <Typography sx={{flexGrow: 1, fontSize: '30px', fontWeight: 500}}>
+          <Typography variant='h1'>
             22
           </Typography>
         </Box>

@@ -61,28 +61,17 @@ export const Dashboard = () => {
         <Grid item container xs={mdDown ? 12 : 4}>
           <Box component={Paper} display='flex' flexDirection='column' width='100%' padding={0}>
             <Box padding={theme.spacing(4)} pb={theme.spacing(0)} sx={{fontColor: '#70D242'}}>
-              <Typography
-                sx={{
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                }}
-              >
-                MATRICULADOS NO ANO
+              <Typography variant='h5'>
+                MATRICULADOS NO PERÍODO
               </Typography>
               <Box display='flex' alignItems='center' color='#61CD2F'>
                 <Add fontSize='medium' />
-                <Typography
-                  sx={{
-                    fontSize: lgDown ? '38px' : '42px',
-                    fontWeight: 800,
-                  }}
-                >
+                <Typography variant='h1'>
                   50
                 </Typography>
                 <Typography
+                  variant='body1'
                   sx={{
-                    fontSize: lgDown ? '0.8rem' : '1rem',
-                    fontWeight: 300,
                     pl: 1
                   }}
                 >
@@ -90,10 +79,9 @@ export const Dashboard = () => {
                 </Typography>
               </Box>
               <Typography
+                variant='body1'
                 sx={{
-                  fontSize: lgDown ? '0.8rem' : '1rem',
-                  fontWeight: 300,
-                  mt: -2
+                  mt: -1
                 }}
               >
                 Novos alunos

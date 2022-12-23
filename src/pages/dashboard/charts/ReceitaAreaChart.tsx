@@ -1,5 +1,6 @@
 import { AttachMoney, CurrencyExchange, TrendingUp } from '@mui/icons-material';
 import { Avatar, Box, Divider, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { height } from '@mui/system';
 import Chart from 'react-apexcharts';
 import { useAppThemeContext } from '../../../shared/contexts';
 
@@ -15,20 +16,21 @@ export const ReceitaAreaChart = () =>
     <Box
       component={Paper}
       sx={{
+        display: 'flex',
+        flexDirection: 'column',
         borderRadius: theme.spacing(1),
         padding: theme.spacing(smDown ? 2 : 4),
-        width: '100%'
+        width: '100%',
       }}
     >
-      <Box sx={{ display: 'flex' }}>
+      <Box display='flex' alignItems='center' flexGrow={1}>
         <Typography
+          variant='body1'
           sx={{
             flexGrow: 1,
-            fontSize: lgDown ? '1.2rem' : '1.3rem',
-            fontWeight: 400
           }}
         >
-          Receita
+          RECEITA
         </Typography>
 
         <Avatar
@@ -46,7 +48,7 @@ export const ReceitaAreaChart = () =>
 
       <Divider sx={{mt: theme.spacing(2)}} />
 
-      <Box>
+      <Box flexGrow={1}>
         <Chart
           width='100%'
           height='100%'
@@ -113,9 +115,8 @@ export const ReceitaAreaChart = () =>
       <Box
         pt={theme.spacing(4)}
         display='flex'
-
-        alignItems='baseline'
         justifyContent='space-around'
+        flexGrow={0}
       >
 
         <Box display='flex' width='100%' alignItems='center' justifyContent='center'>
@@ -125,29 +126,18 @@ export const ReceitaAreaChart = () =>
               sx={{
                 bgcolor: '#57CA22',
                 color: '#fff',
-                width: smDown ? 30 : 45,
-                height: smDown ? 30 : 45
+                width: 40,
+                height: 40
               }}
             >
               <AttachMoney />
             </Avatar>
           </Box>
           <Box pl={theme.spacing(1)}>
-            <Typography
-              sx={{
-                fontSize: smDown ? '14px' : undefined,
-                fontWeight: 300
-              }}
-            >
+            <Typography variant='caption'>
               Total no ano
             </Typography>
-            <Typography
-              sx={{
-                fontSize: smDown ? '12px' : '18px',
-                fontWeight: 800,
-                mt: theme.spacing(-1),
-              }}
-            >
+            <Typography variant={lgDown ? 'h5' : 'h4'} sx={{lineHeight: '0.5em'}}>
               R$ 1.035.000
             </Typography>
           </Box>
@@ -160,29 +150,18 @@ export const ReceitaAreaChart = () =>
               sx={{
                 bgcolor: theme.palette.secondary.main,
                 color: '#fff',
-                width: smDown ? 30 : 45,
-                height: smDown ? 30 : 45
+                width: 40,
+                height: 40
               }}
             >
               <CurrencyExchange />
             </Avatar>
           </Box>
           <Box pl={theme.spacing(1)}>
-            <Typography
-              sx={{
-                fontSize: smDown ? '14px' : undefined,
-                fontWeight: 300
-              }}
-            >
+            <Typography variant='caption'>
               Último mês
             </Typography>
-            <Typography
-              sx={{
-                fontSize: smDown ? '12px' : '18px',
-                fontWeight: 800,
-                mt: theme.spacing(-1)
-              }}
-            >
+            <Typography variant={lgDown ? 'h5' : 'h4'} sx={{lineHeight: '0.5em'}}>
               R$ 82.000
             </Typography>
           </Box>

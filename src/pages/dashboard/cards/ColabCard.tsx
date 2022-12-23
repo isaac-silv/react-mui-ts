@@ -17,11 +17,11 @@ export const ColabCard = () => {
       }}>
       <Box display='flex'>
         <Box sx={{flexGrow: 1}}>
-          <Typography>
+          <Typography variant='body1'>
             COLABORADORES
           </Typography>
 
-          <Typography sx={{flexGrow: 1, fontSize: '30px', fontWeight: 500}}>
+          <Typography variant='h1'>
             12
           </Typography>
         </Box>

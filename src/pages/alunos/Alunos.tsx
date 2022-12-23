@@ -1,5 +1,5 @@
 import { Edit } from '@mui/icons-material';
-import { Avatar, Badge, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
+import { Avatar, Badge, Box, Button, Card, Divider, Grid, Icon, IconButton, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
@@ -9,6 +9,8 @@ import { Aluno } from '../../shared/types/Aluno';
 
 
 export const Alunos = () => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [ alunos, setAlunos ] = useState<Aluno[]>([]);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
@@ -50,7 +52,7 @@ export const Alunos = () => {
         <Grid item container>
           <TableContainer component={Paper}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 4}}>
-              <Typography variant='h5'>
+              <Typography variant='h3'>
                 Alunos
               </Typography>
               <Button variant='contained' onClick={() => navigate('/aluno/cadastro')}>
@@ -62,19 +64,37 @@ export const Alunos = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    Nome
+                    <Typography variant='h4'>
+                      Nome
+                    </Typography>
                   </TableCell>
+
+                  {smDown ? null :
+                    <TableCell align='right'>
+                      <Typography variant='h4'>
+                        Idade
+                      </Typography>
+                    </TableCell>
+                  }
+
+                  {smDown ? null :
+                    <TableCell align='right'>
+                      <Typography variant='h4'>
+                        Altura
+                      </Typography>
+                    </TableCell>
+                  }
+                  {smDown ? null :
+                    <TableCell align='right'>
+                      <Typography variant='h4'>
+                        Peso
+                      </Typography>
+                    </TableCell>
+                  }
                   <TableCell align='right'>
-                    Idade
-                  </TableCell>
-                  <TableCell align='right'>
-                    Altura
-                  </TableCell>
-                  <TableCell align='right'>
-                    Peso
-                  </TableCell>
-                  <TableCell align='right'>
-                    Editar
+                    <Typography variant='h4'>
+                      Editar
+                    </Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -107,18 +127,27 @@ export const Alunos = () => {
                     <TableCell>
                       <Box display='flex' alignItems='center' gap={2}>
                         <Avatar src={alunos.Fotos[0] ? alunos.Fotos[0].url : undefined } />
-                        {alunos.nome}
+                        <Typography variant='h5'>
+                          {alunos.nome}
+                        </Typography>
                       </Box>
                     </TableCell>
-                    <TableCell align='right'>
-                      {alunos.idade}
-                    </TableCell>
-                    <TableCell align='right'>
-                      {alunos.altura}
-                    </TableCell>
-                    <TableCell align='right'>
-                      {alunos.peso}
-                    </TableCell>
+                    {smDown ? null :
+                      <TableCell align='right'>
+                        {alunos.idade}
+                      </TableCell>
+                    }
+
+                    {smDown ? null :
+                      <TableCell align='right'>
+                        {alunos.altura}
+                      </TableCell>
+                    }
+                    {smDown ? null :
+                      <TableCell align='right'>
+                        {alunos.peso}
+                      </TableCell>
+                    }
                     <TableCell align='right'>
                       <IconButton onClick={() => navigate(`/alunos/${alunos.id}`)}>
                         <Icon>
