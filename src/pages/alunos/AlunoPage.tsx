@@ -77,7 +77,7 @@ export const AlunoPage = () => {
         setAltura(response.altura);
         setPeso(response.peso);
         showSnackBar('Aluno cadastrado com sucesso!', 'success');
-        navigate(`/aluno/${response.id}`);
+        navigate(`/alunos/${response.id}`);
       }
     }
   };
@@ -135,8 +135,10 @@ export const AlunoPage = () => {
           setIdade(response.idade);
           setAltura(response.altura);
           setPeso(response.peso);
-          setFoto(response.Fotos[0].url);
           setIsLoading(false);
+          if(response.Fotos.length > 0) {
+            setFoto(response.Fotos[0].url);
+          }
         }
       }
       setIsLoading(false);
@@ -306,7 +308,7 @@ export const AlunoPage = () => {
                         onClose={handleClose}
                         aria-labelledby="draggable-dialog-title"
                       >
-                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                        <DialogTitle sx={{ cursor: 'move', fontSize: '1.25rem' }}>
                           Tem certeza que deseja apagar este aluno?
                         </DialogTitle>
                         <DialogContent>

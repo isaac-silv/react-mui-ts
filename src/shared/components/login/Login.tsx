@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, Card, CardActions, CardContent, CircularProgress, Icon, IconButton, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, Button, Card, CardActions, CardContent, CircularProgress, Divider, Icon, IconButton, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useAuthContext, useSnackBar } from '../../contexts';
 import * as yup from 'yup';
@@ -76,11 +76,12 @@ export const LoginPage: React.FC<ILoginPageProps> = ({ children }) => {
             width={250}
           >
             <Typography
-              variant='h6'
+              variant='h2'
               align='center'
             >
               Digite suas credenciais
             </Typography>
+            <Divider sx={{mb: 1}} />
             <TextField
               fullWidth
               label='Email'

@@ -35,7 +35,7 @@ const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({
         autoHideDuration={5000}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         onClose={handleClose}
-        sx={{paddingTop: 6}}>
+        sx={{ paddingTop: 6, maxWidth: '1536px' }}>
         <Alert onClose={handleClose} severity={typeColor}>
           {message}
         </Alert>

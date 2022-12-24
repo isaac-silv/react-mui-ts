@@ -55,7 +55,7 @@ export const Alunos = () => {
               <Typography variant='h3'>
                 Alunos
               </Typography>
-              <Button variant='contained' onClick={() => navigate('/aluno/cadastro')}>
+              <Button variant='contained' onClick={() => navigate('/alunos/cadastro')}>
                 Novo Aluno
               </Button>
             </Box>
