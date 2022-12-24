@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material';
 import { amber, deepPurple } from '@mui/material/colors';
 import { ptBR } from '@mui/material/locale';
+import { border } from '@mui/system';
 
 export const DarkTheme = createTheme({
   palette: {
@@ -138,7 +139,28 @@ export const DarkTheme = createTheme({
           backgroundColor: '#4C4F55',
         }
       }
-    }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: '1px solid rgba(224, 224, 224, 0.12)',
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderColor: '#fff'
+        }
+      }
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(224, 224, 224, 0.8)',
+        }
+      }
+    },
   },
 },
 ptBR,
