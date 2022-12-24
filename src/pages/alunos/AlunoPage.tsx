@@ -1,5 +1,5 @@
-import { AutoAwesome, Delete, Edit, EditAttributes, ReportProblem } from '@mui/icons-material';
-import { Avatar, Badge, Box, Button, Card, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, IconButton, Paper, Skeleton, Stack, TextField, Tooltip, Typography } from '@mui/material';
+import { AutoAwesome, Delete, Edit, ReportProblem } from '@mui/icons-material';
+import { Avatar, Badge, Box, Button, Card, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, IconButton, LinearProgress, Paper, Skeleton, Stack, TextField, Tooltip, Typography } from '@mui/material';
 import {  useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppToolbar } from '../../shared/components';
@@ -21,6 +21,7 @@ export const AlunoPage = () => {
   const [ foto, setFoto ] = useState<string | undefined>();
   const [ open, setOpen ] = useState<boolean>(false);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const [ fotoLoading, setFotoLoading] = useState<boolean>(false);
 
   const { params = 'cadastro' } = useParams<'params'>();
 
@@ -53,7 +54,6 @@ export const AlunoPage = () => {
         setIdade(response.idade);
         setAltura(response.altura);
         setPeso(response.peso);
-        setFoto(response.Fotos[0].url);
         showSnackBar('Aluno editado com sucesso!', 'success');
       }
     } else {
@@ -83,6 +83,7 @@ export const AlunoPage = () => {
   };
 
   const handleChange = async (e: any) => {
+    setFotoLoading(true);
     const file = e.target.files[0];
     const fotoURL = URL.createObjectURL(file);
 
@@ -98,10 +99,12 @@ export const AlunoPage = () => {
     });
 
     if(response.message) {
+      setFotoLoading(false);
       showSnackBar(response.message, 'error');
       navigate('/alunos');
     } else {
       setFoto(fotoURL);
+      setFotoLoading(false);
       showSnackBar('Foto alterada', 'success');
     }
   };
@@ -150,6 +153,9 @@ export const AlunoPage = () => {
     <LayoutBase AppToolbar={(<AppToolbar />)}>
       <Box display='flex' justifyContent='center' alignItems='center'>
         <Box component={Paper}>
+          <Box>
+            {fotoLoading ? <LinearProgress color='primary' /> : null}
+          </Box>
           {isLoading ?
             <Box>
               <Card
